@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class ConsultaController extends Controller
 {
+    /**
+     * Procesa el formulario de consultas
+     * Recibe nombre, email y mensaje del usuario
+     * Redirige a la página de éxito
+     */
     public function procesar(Request $request) {
         $nombre = $request->input('nombre');
         $email = $request->input('email');

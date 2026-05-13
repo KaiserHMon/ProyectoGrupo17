@@ -1,7 +1,9 @@
 @extends('layout')
 
+{{-- Página principal con presentación de la empresa y catálogo destacado --}}
 @section('contenido')
 
+{{-- Sección hero: Presentación principal de la empresa con carrusel de imágenes --}}
 <section class="section-hero">
 <div class="container">
     <div class="row align-items-center g-5">
@@ -28,6 +30,7 @@
 </div>
 </section>
 
+{{-- Sección de productos: Muestra los 4 tipos de productos principales con imágenes --}}
 <section class="section-products">
 <div class="container">
 <p class="text-center mb-1 small" style="letter-spacing: 1px; text-transform: uppercase;">Elige tu favorito</p>
