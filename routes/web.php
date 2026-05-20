@@ -29,8 +29,8 @@ Route::get('/quienes-somos', function() {
     return view('quienes-somos');
 });
 
-Route::get('/login-register', function() {
-    return view('login-register');
+Route::get('/usuarios/login-register', function() {
+    return view('/usuarios/login-register');
 });
 
 
@@ -38,6 +38,10 @@ Route::get('/consultas', function() {
     return view('consultas');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
+Route::get('/backend/dashboard', function () {
+    return view('/backend/dashboard');
+});
+
+Route::get('/usuarios/carrito', function () {
+    return view('/usuarios/carrito');
 });
