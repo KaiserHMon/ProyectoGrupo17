@@ -49,18 +49,27 @@
 
                   <!-- 2 column grid layout -->
                   <div class="row mb-4">
+                    
                     <div class="col-md-6 d-flex justify-content-start mb-3 mb-md-0">
                       <!-- Checkbox -->
                       <div class="d-flex align-items-center">
-                        <input class="maie-checkbox" type="checkbox" id="loginCheck" />
-                        <label class="ms-2 text-muted" for="loginCheck" style="cursor: pointer;"> Recordarme </label>
+                        <input class="maie-checkbox" type="checkbox" id="loginRemember" />
+                        <label class="ms-2 text-muted" for="loginRemember" style="cursor: pointer;"> Recordarme </label>
                       </div>
-                    </div>
-
                   </div>
 
+                  <div class="col-md-6 d-flex justify-content-start mb-3 mb-md-0">
+                      <!-- Checkbox -->
+                      <div class="d-flex align-items-center">
+                        <input class="maie-checkbox" type="checkbox" id="loginAdmin" />
+                        <label class="ms-2 text-muted" for="loginAdmin" style="cursor: pointer;">Es administrador?</label>
+                      </div>
+                  </div>
+
+                  </div><!-- cierre row mb-4 -->
+
                   <!-- Submit button -->
-                  <div class="text-center">
+                  <div class="text-center mt-4">
                     <button type="submit" class="btn-custom w-100 border-0 rounded py-2">Ingresar</button>
                   </div>
 
