@@ -37,9 +37,8 @@ Route::get('/quienes-somos', function() {
     return view('quienes-somos');
 });
 
-// Muestra la página de login y registro
-Route::get('/login-register', function() {
-    return view('login-register');
+Route::get('/usuarios/login-register', function() {
+    return view('/usuarios/login-register');
 });
 
 // Muestra el formulario de consultas

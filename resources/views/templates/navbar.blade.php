@@ -16,7 +16,7 @@
           <a href="/quienes-somos" class="nav-link fw-bold">Quiénes Somos</a>
           <a href="/consultas" class="nav-link fw-bold">Consultas</a>
 
-          <a href="/login-register" class="nav-link">
+          <a href="/usuarios/login-register" class="nav-link">
             <img src="{{ asset('images/svg/login-svgrepo-com.svg') }}" alt="Iniciar Sesión" width="30" height="30">
           </a>
         </div>
