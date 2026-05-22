@@ -83,25 +83,25 @@
                   <!-- Name input -->
                   <div class="mb-4">
                     <label class="form-label text-maie fw-medium" for="registerName">Nombre completo</label>
-                    <input type="text" id="registerName" class="maie-input" />
+                    <input type="text" id="registerName" class="maie-input" name="nombre" />
                   </div>
 
                   <!-- Email input -->
                   <div class="mb-4">
                     <label class="form-label text-maie fw-medium" for="registerEmail">Correo electrónico</label>
-                    <input type="email" id="registerEmail" class="maie-input" />
+                    <input type="email" id="registerEmail" class="maie-input" name="email"/>
                   </div>
 
                   <!-- Password input -->
                   <div class="mb-4">
                     <label class="form-label text-maie fw-medium" for="registerPassword">Contraseña</label>
-                    <input type="password" id="registerPassword" class="maie-input" />
+                    <input type="password" id="registerPassword" class="maie-input" name="password" />
                   </div>
 
                   <!-- Repeat Password input -->
                   <div class="mb-4">
                     <label class="form-label text-maie fw-medium" for="registerRepeatPassword">Repetir contraseña</label>
-                    <input type="password" id="registerRepeatPassword" class="maie-input" />
+                    <input type="password" id="registerRepeatPassword" class="maie-input" name="password_confirmation"/>
                   </div>
 
                   <!-- Checkbox -->
