@@ -63,7 +63,7 @@ Para clonar y ejecutar el proyecto en Laravel Herd, seguí estos pasos:
 
 **Paso 1 — Clonar el repositorio**
 ```bash
-git clone https://github.com/KaiserHMon/maie-ecommerce-hardoy-harvey
+git clone https://github.com/KaiserHMon/ProyectoGrupo17
 ```
 
 **Paso 2 — Instalar dependencias**
@@ -86,7 +86,7 @@ copy .env.example .env
 php artisan key:generate
 ```
 
-**Paso 5 — Ejecutar migraciones y seeders**
+**Paso 5 — Verificar en el archivo .env que SESSION_DRIVER sea igual a file (LINEA 30)**
 ```bash
-php artisan migrate --seed
+ SESSION_DRIVER=file
 ```

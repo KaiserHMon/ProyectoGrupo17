@@ -1,7 +1,9 @@
 @extends('layout')
 
+{{-- Página de autenticación con pestañas de login y registro --}}
 @section('contenido')
 
+{{-- Sección principal: Contenedor de los formularios de login y registro --}}
 <section class="py-5" style="background-color: #FCF9F4; min-height: 80vh;">
   <div class="container">
     <div class="row justify-content-center">
@@ -15,6 +17,7 @@
               <img src="{{ asset('images/logo/LOGO_MAIE_navbar.png') }}" alt="Maie Logo" style="height: 60px;">
             </div>
 
+            {{-- Pestañas de navegación: Permite alternar entre login y registro --}}
             <!-- Pills navs -->
             <ul class="nav nav-pills maie-auth-nav nav-justified mb-4" id="authTabs" role="tablist">
               <li class="nav-item" role="presentation">
@@ -28,6 +31,7 @@
             </ul>
             <!-- Pills navs -->
 
+            {{-- Contenido de pestañas: Formularios de login y registro --}}
             <!-- Pills content -->
             <div class="tab-content">
 
