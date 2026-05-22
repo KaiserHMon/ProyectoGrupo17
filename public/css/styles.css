@@ -194,12 +194,13 @@ p {
     background-color: #622b16;
     border-color: #622b16;
     color: white;
+    border-radius: 50px;
     transition: all 0.3s ease;
 }
 
 .btn-custom:hover {
-    background-color: #7a3800;
-    border-color: #7a3800;
+    background-color: #4a2011;
+    border-color: #4a2011;
     color: white;
 }
 

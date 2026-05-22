@@ -7,6 +7,20 @@
     <h1 class="display-5 fw-bold mb-3 text-center">Catálogo de <span class="fst-italic fw-bold text-maie">Tentaciones</span></h1>
     <p class="lead text-center mb-5">Descubre nuestra exquisita selección de delicias artesanales, preparadas con amor y los mejores ingredientes.</p>
 
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show mb-4" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     {{-- Grid de productos: Muestra todas las delicias disponibles en tarjetas --}}
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-5">
         @foreach($productos as $producto)
@@ -20,7 +34,12 @@
                 <div class="card-body d-flex flex-column">
                     <h5 class="card-title text-center">{{ $producto->nombre }}</h5>
                     <p class="card-text text-center flex-grow-1">{{ $producto->descripcion }}</p>
-                    <p class="fw-bold text-center text-maie mt-auto mb-0">$ {{ number_format($producto->precio, 2, ',', '.') }}</p>
+                    <p class="fw-bold text-center text-maie mt-auto mb-3">$ {{ number_format($producto->precio, 2, ',', '.') }}</p>
+                    
+                    <form action="{{ route('carrito.add', $producto->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-custom w-100 rounded-pill">Añadir al Carrito</button>
+                    </form>
                 </div>
             </div>
         </div>
