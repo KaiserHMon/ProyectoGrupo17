@@ -27,6 +27,12 @@
               <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#panel-eliminar" type="button" role="tab">
                 Eliminar Producto
               </button>
+              <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#panel-usuarios" type="button" role="tab">
+                Usuarios Registrados
+              </button>
+              <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#panel-ventas" type="button" role="tab">
+                Ventas Realizadas
+              </button>
             </div>
           </div>
         </div>
@@ -134,109 +140,66 @@
                 <p class="text-muted mb-4" style="font-size:.9rem;">Seleccioná el producto que querés eliminar del catálogo. Esta acción no se puede deshacer.</p>
 
                 <div class="d-flex flex-column gap-3">
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/maie-93.jpg" alt="Maie Negro" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Maie Negro</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 34 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Maie Negro">
-                      Eliminar
-                    </button>
-                  </div>
 
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/maie-95.jpg" alt="Maie Blanco" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Maie Blanco</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 21 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Maie Blanco">
-                      Eliminar
-                    </button>
-                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
 
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/maie-rojo.jpeg" alt="Maie Frutos Rojos" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Maie Frutos Rojos</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 15 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Maie Frutos Rojos">
-                      Eliminar
-                    </button>
-                  </div>
+          {{-- Usuarios Registrados --}}
+          <div class="tab-pane fade" id="panel-usuarios" role="tabpanel">
+            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Usuarios Registrados</h2>
+                <p class="text-muted mb-4" style="font-size:.9rem;">Listado de todos los usuarios que se han registrado en la plataforma.</p>
 
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/conitos-manfrey2.jpg" alt="Cono Tentacion" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Cono Tentacion</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 50 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Cono Tentacion">
-                      Eliminar
-                    </button>
-                  </div>
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle" style="font-size:.9rem;">
+                    <thead>
+                      <tr style="border-bottom: 2px solid rgba(98,43,22,0.15);">
+                        <th class="fw-semibold text-maie">#</th>
+                        <th class="fw-semibold text-maie">Nombre</th>
+                        <th class="fw-semibold text-maie">Correo</th>
+                        <th class="fw-semibold text-maie">Rol</th>
+                        <th class="fw-semibold text-maie">Fecha de registro</th>
+                      </tr>
+                    </thead>
+                    <tbody>
 
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/crumbl-pistacchio.webp" alt="Cookie Pistachio" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Cookie Pistachio</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 8 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Cookie Pistachio">
-                      Eliminar
-                    </button>
-                  </div>
 
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/crumbl-classic.jpg" alt="Classic Cookie" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Classic Cookie</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 12 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Classic Cookie">
-                      Eliminar
-                    </button>
-                  </div>
 
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/macarons-chocolate.jpg" alt="Macaron Au Chocolat" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Macaron Au Chocolat</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 30 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Macaron Au Chocolat">
-                      Eliminar
-                    </button>
-                  </div>
+                    </tbody>
+                  </table>
+                </div>
 
-                  <div class="d-flex align-items-center justify-content-between p-3 rounded-3" style="border: 1px solid rgba(98,43,22,0.1); background:#FCF9F4;">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="/images/productos/macaron-framboise.jpg" alt="Macaron Aux Framboises" class="rounded-3" style="width:56px; height:56px; object-fit:cover;">
-                      <div>
-                        <p class="mb-0 fw-bold" style="color:#622b16; font-size:.95rem;">Macaron Aux Framboises</p>
-                        <p class="mb-0 text-muted" style="font-size:.82rem;">Stock actual: 18 unidades</p>
-                      </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-danger btn-sm rounded-3 fw-medium" data-bs-toggle="modal" data-bs-target="#modalEliminar" data-nombre="Macaron Aux Framboises">
-                      Eliminar
-                    </button>
-                  </div>
+              </div>
+            </div>
+          </div>
+
+          {{-- Ventas Realizadas --}}
+          <div class="tab-pane fade" id="panel-ventas" role="tabpanel">
+            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Ventas Realizadas</h2>
+                <p class="text-muted mb-4" style="font-size:.9rem;">Historial de todas las ventas completadas en la tienda.</p>
+
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle" style="font-size:.9rem;">
+                    <thead>
+                      <tr style="border-bottom: 2px solid rgba(98,43,22,0.15);">
+                        <th class="fw-semibold text-maie">Orden</th>
+                        <th class="fw-semibold text-maie">Cliente</th>
+                        <th class="fw-semibold text-maie">Productos</th>
+                        <th class="fw-semibold text-maie">Total</th>
+                        <th class="fw-semibold text-maie">Estado</th>
+                        <th class="fw-semibold text-maie">Fecha</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                  </table>
                 </div>
 
               </div>
