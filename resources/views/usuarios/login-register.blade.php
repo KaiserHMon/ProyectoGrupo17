@@ -42,13 +42,13 @@
                   <!-- Email input -->
                   <div class="mb-4">
                     <label class="form-label text-maie fw-medium" for="loginName">Correo electronico</label>
-                    <input type="text" id="loginName" class="maie-input" />
+                    <input type="text" id="loginName" class="maie-input" name="email"/>
                   </div>
 
                   <!-- Password input -->
                   <div class="mb-4">
                     <label class="form-label text-maie fw-medium" for="loginPassword">Contraseña</label>
-                    <input type="password" id="loginPassword" class="maie-input" />
+                    <input type="password" id="loginPassword" class="maie-input" name="password" />
                   </div>
 
                   <!-- 2 column grid layout -->
