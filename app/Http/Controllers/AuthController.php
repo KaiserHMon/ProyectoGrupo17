@@ -13,6 +13,16 @@ class AuthController extends Controller
 
 public function registrar(Request $request){
     $request->validate([
-        'name'      => 'required|string|max:255'
-        'email'     =>  'required|email|max:255|unique:usuarios'])
+        'nombre'      =>    'required|string|max:255',
+        'email'       =>    'required|email|max:255|unique:usuarios',
+        'password'    =>    'required|min:8|confirmed', 
+    ]);
 }
+
+public function iniciarSesion(Request $request){
+    $request->validate([
+        'email'         =>  'required|email',
+        'password'      =>  'required',
+    ]);
+}
+
