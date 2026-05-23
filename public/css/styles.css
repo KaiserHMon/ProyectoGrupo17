@@ -151,9 +151,9 @@ p {
    ======================================== */
 
 .card-catalogo {
-    border: 1px solid rgba(98, 43, 22, 0.1); /* Borde sutil color Maie */
+    border: 1px solid rgba(98, 43, 22, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden; /* Para que la imagen respete los bordes redondeados */
+    overflow: hidden;
 }
 
 .card-catalogo:hover {
@@ -203,24 +203,6 @@ p {
     color: white;
 }
 
-.dropdown-toggle::after {
-    border-top-color: #be8e75;
-}
-
-.dropdown-menu {
-    background-color: #7c3c22;
-}
-
-.dropdown-item {
-    color: #ddaa8f;
-}
-
-.dropdown-item:hover,
-.dropdown-item:focus {
-    background-color: transparent;
-    color: #ffffff;
-}
-
 /* ========================================
    COMPONENTES DE AUTENTICACIÓN (MAIE)
    ======================================== */
@@ -257,25 +239,6 @@ p {
     border-color: #9A4600;
 }
 
-/* Botones de redes sociales */
-.maie-social-btn {
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 1px solid #be8e75;
-    color: #622b16;
-    background: none;
-    transition: all 0.3s ease;
-}
-
-.maie-social-btn:hover {
-    background-color: #622b16;
-    color: #FCF9F4;
-    border-color: #622b16;
-}
 
 /* Checkbox personalizado */
 .maie-checkbox {

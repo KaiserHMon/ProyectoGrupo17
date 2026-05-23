@@ -1,7 +1,9 @@
 @extends('layout')
 
+{{-- Página de comercialización con ubicaciones, métodos de pago y certificados --}}
 @section('contenido')
 
+{{-- Sección hero: Título y descripción general de la página --}}
 <section class="section-hero-comercio">
 <div class="container">
 <div class="row align-items-center g-5 py-5">
@@ -13,6 +15,7 @@
 </div>
 </section>
 
+{{-- Sección de ubicaciones: Muestra los locales donde se venden los productos --}}
 <section class="section-donde-encontrarnos py-5">
 <div class="container">
     <h1 class="display-6 fw-bold lh-1 mb-4 text-center">Dónde Encontrarnos</h1>
@@ -58,6 +61,7 @@
 </div>
 </section>
 
+{{-- Sección de métodos de pago: Muestra los métodos de pago aceptados --}}
 <section class="section-metodos-pago py-5 border-top">
 <div class="container">
     <div class="row align-items-center g-5">
@@ -111,6 +115,7 @@
 </div>
 </section>
 
+{{-- Sección de certificados: Muestra garantías y certificaciones de calidad --}}
 <section class="section-certificados py-5 my-5 border-top" style="background-color: #F6F3EE;">
 <div class="container py-5">
     <p class="text-center mb-2 small">Nuestro compromiso</p>

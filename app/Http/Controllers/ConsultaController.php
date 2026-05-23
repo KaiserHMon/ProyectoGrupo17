@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ContactoController extends Controller
+class ConsultaController extends Controller
 {
     /**
-     * Procesa el formulario de contacto
+     * Procesa el formulario de consultas
      * Recibe nombre, email y mensaje del usuario
      * Redirige a la página de éxito
      */
