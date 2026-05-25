@@ -36,9 +36,9 @@ class AuthController extends Controller
         if(Auth::attempt($credenciales)){
             $request->session()->regenerate();
         if(Auth::user()->rol->nombre === 'admin'){
-            return redirect('/admin'); //aca iria la view del panel de admin
+            return redirect('/admin');
         }
-        return redirect('/cliente'); //aca iria la view del panel de cliente
+        return redirect('/cliente');
         }
         return back()->withErrors(['email' => 'Email o contraseña incorrectos']);
     }
