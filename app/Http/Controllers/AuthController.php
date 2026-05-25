@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UsuarioController;
 
 class AuthController extends Controller
 {
@@ -18,11 +19,10 @@ class AuthController extends Controller
     */
 
     public function registrar(Request $request){
-    $request->validate([
-        'nombre'      =>    'required|string|max:255',
-        'email'       =>    'required|email|max:255|unique:usuarios',
-        'password'    =>    'required|min:8|confirmed', 
-        ]);
+        $usuario = app(UsuarioController::class)->store($request);
+        Auth::login($usuario);
+        $request->session()->regenerate();
+        return redirect('/cliente');
     }
 
     /*
