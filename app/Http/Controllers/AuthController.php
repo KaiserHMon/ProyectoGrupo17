@@ -25,13 +25,6 @@ class AuthController extends Controller
         ]);
     }
 
-    public function iniciarSesion(Request $request){
-    $request->validate([
-        'email'         =>  'required|email',
-        'password'      =>  'required',
-        ]);
-    }
-
     /*
 
     */
@@ -60,6 +53,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/usuario/login-register');
+        return redirect('/usuarios/login-register');
     }
 }

@@ -37,7 +37,8 @@
 
               <!-- Pestaña Login -->
               <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-                <form action="javascript:void(0);">
+                <form action="{{ route('usuarios.autenticar') }}" method="POST">
+                  @csrf
 
                   <!-- Email input -->
                   <div class="mb-4">
@@ -62,16 +63,7 @@
                       </div>
                   </div>
 
-                  <div class="col-md-6 d-flex justify-content-start mb-3 mb-md-0">
-                      <!-- Checkbox -->
-                      <div class="d-flex align-items-center">
-                        <input class="maie-checkbox" type="checkbox" id="loginAdmin" />
-                        <label class="ms-2 text-muted" for="loginAdmin" style="cursor: pointer;">Es administrador?</label>
-                      </div>
-                  </div>
-
                   </div><!-- cierre row mb-4 -->
-
                   <!-- Submit button -->
                   <div class="text-center mt-4">
                     <button type="submit" class="btn-custom w-100 border-0 rounded py-2">Ingresar</button>
@@ -82,7 +74,8 @@
 
               <!-- Pestaña Registro -->
               <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-                <form action="javascript:void(0);">
+                <form action="{{ route('usuarios.registrar') }}" method="POST">
+                  @csrf
 
                   <!-- Name input -->
                   <div class="mb-4">
