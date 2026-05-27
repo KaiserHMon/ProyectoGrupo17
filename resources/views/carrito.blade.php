@@ -32,6 +32,7 @@
                         <th class="text-center">Precio Unitario</th>
                         <th class="text-center">Cantidad</th>
                         <th class="text-center">Subtotal</th>
+                        <th class="text-center">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,23 +51,51 @@
                         </td>
                         <td class="text-center">$ {{ number_format($detalle->precio_unitario, 2, ',', '.') }}</td>
                         <td class="text-center">
-                            <span class="badge bg-light text-dark fs-6 border px-3 py-2">{{ $detalle->cantidad }}</span>
+                            <form action="{{ route('carrito.update', $detalle->id) }}" method="POST" class="d-inline-block">
+                                @csrf
+                                @method('PATCH')
+                                <div class="input-group input-group-sm" style="max-width: 120px; margin: 0 auto;">
+                                    <button class="btn btn-outline-secondary px-2" type="submit" name="action" value="decrease" {{ $detalle->cantidad <= 1 ? 'disabled' : '' }}>
+                                        <i class="bi bi-dash-lg"></i>
+                                    </button>
+                                    <input type="text" class="form-control text-center bg-light border-secondary fw-bold" value="{{ $detalle->cantidad }}" readonly style="width: 40px; padding: 0.25rem;">
+                                    <button class="btn btn-outline-secondary px-2" type="submit" name="action" value="increase" {{ $detalle->cantidad >= $detalle->producto->stock ? 'disabled' : '' }}>
+                                        <i class="bi bi-plus-lg"></i>
+                                    </button>
+                                </div>
+                            </form>
                         </td>
                         <td class="text-center fw-bold">$ {{ number_format($detalle->cantidad * $detalle->precio_unitario, 2, ',', '.') }}</td>
+                        <td class="text-center">
+                            <form action="{{ route('carrito.destroy', $detalle->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto del carrito?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-outline-danger border-0 rounded-circle p-2" title="Eliminar producto">
+                                    <i class="bi bi-trash3-fill fs-5"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
                 <tfoot class="bg-light fw-bold">
                     <tr>
-                        <td colspan="3" class="text-end py-3 fs-5">Total:</td>
-                        <td class="text-center py-3 fs-5 text-maie">$ {{ number_format($cabecera->total, 2, ',', '.') }}</td>
+                        <td colspan="4" class="text-end py-3 fs-5">Total:</td>
+                        <td colspan="2" class="text-center py-3 fs-5 text-maie">$ {{ number_format($cabecera->total, 2, ',', '.') }}</td>
                     </tr>
                 </tfoot>
             </table>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="{{ url('/catalogo') }}" class="btn btn-outline-secondary px-4 py-2 rounded-pill">Seguir Comprando</a>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+            <div>
+                <a href="{{ url('/catalogo') }}" class="btn btn-outline-secondary px-4 py-2 rounded-pill me-2">Seguir Comprando</a>
+                <form action="{{ route('venta.cancelar') }}" method="POST" class="d-inline" onsubmit="return confirm('¿Estás seguro de que deseas cancelar la compra? Se vaciará todo el carrito.')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger px-4 py-2 rounded-pill">Cancelar Compra</button>
+                </form>
+            </div>
             <form action="{{ route('venta.confirmar') }}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-custom px-5 py-2 rounded-pill fw-bold">Finalizar Compra</button>

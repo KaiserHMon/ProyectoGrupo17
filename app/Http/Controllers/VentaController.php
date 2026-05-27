@@ -56,4 +56,31 @@ class VentaController extends Controller
             return redirect()->route('carrito.show')->with('error', $e->getMessage());
         }
     }
+
+    public function cancelar()
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para realizar esta acción.');
+        }
+
+        $usuarioId = Auth::id();
+
+        try {
+            $cabecera = VentaCabecera::where('usuario_id', $usuarioId)
+                ->where('estado', 'pendiente')
+                ->first();
+
+            if ($cabecera) {
+                // Eliminar detalles primero para limpiar de forma explícita
+                $cabecera->detalles()->delete();
+                // Eliminar cabecera
+                $cabecera->delete();
+            }
+
+            return redirect()->route('carrito.show')->with('success', 'Compra cancelada y carrito vaciado correctamente.');
+
+        } catch (\Exception $e) {
+            return redirect()->route('carrito.show')->with('error', 'Ocurrió un error al intentar cancelar la compra: ' . $e->getMessage());
+        }
+    }
 }

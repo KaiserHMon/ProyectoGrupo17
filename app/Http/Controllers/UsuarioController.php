@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rol;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -39,7 +40,7 @@ class UsuarioController extends Controller
         Usuario::create($request->only(['nombre', 'email', 'password', 'rol_id']));
         return redirect()->route('usuarios.index')->with('exito', 'Usuario registrado');
     }
-        
+
 
     /**
      * Display the specified resource.

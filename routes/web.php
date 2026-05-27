@@ -61,6 +61,9 @@ Route::middleware(['auth', 'rol:cliente'])->group(function() {
     Route::post('/carrito/agregar/{id}', [CarritoController::class, 'add'])->name('carrito.add');
     Route::get('/carrito', [CarritoController::class, 'show'])->name('carrito.show');
     Route::post('/carrito/confirmar', [VentaController::class, 'confirmar'])->name('venta.confirmar');
+    Route::patch('/carrito/detalle/{id}', [CarritoController::class, 'update'])->name('carrito.update');
+    Route::delete('/carrito/detalle/{id}', [CarritoController::class, 'destroy'])->name('carrito.destroy');
+    Route::delete('/carrito/cancelar', [VentaController::class, 'cancelar'])->name('venta.cancelar');
 
 });
 
@@ -69,10 +72,10 @@ Seccion de admin
 */
 Route::middleware(['auth', 'rol:admin'])->group(function() {
 
-
     # Seccion de productos
-    Route::get('/admin/productos', [ProductoController::class, 'index']);
-    Route::post('/admin/productos/create', [ProductoController::class, 'create']);
-    Route::get('/admin/productos/{id}/edit', [ProductoController::class, 'edit']);
-    Route::get('/admin/prudcotos/{id}/delete', [ProductoController::class, 'destroy']);
+    Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos.index');
+    Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
+    Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
+    Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
+
 });
