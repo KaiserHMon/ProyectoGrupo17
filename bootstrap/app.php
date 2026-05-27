@@ -14,6 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'rol' => \App\Http\Middleware\VerificarRol::class,
         ]);
+        $middleware->redirectGuestsTo('/usuarios/login-register');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
