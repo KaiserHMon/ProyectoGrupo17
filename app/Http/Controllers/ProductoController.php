@@ -36,7 +36,7 @@ class ProductoController extends Controller
             'descripcion' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240'
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.unique' => 'Ya existe un producto con este nombre.',
@@ -47,7 +47,8 @@ class ProductoController extends Controller
             'stock.integer' => 'El stock debe ser un número entero.',
             'imagen.image' => 'El archivo debe ser una imagen.',
             'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg, gif).',
-            'imagen.max' => 'La imagen no debe pesar más de 2MB.'
+            'imagen.max' => 'La imagen no debe pesar más de 10MB.',
+            'imagen.uploaded' => 'La imagen no pudo subirse. Posiblemente sea demasiado grande o el formato no sea válido.'
         ]);
 
         $data = $request->only(['nombre', 'descripcion', 'precio', 'stock']);
@@ -75,7 +76,7 @@ class ProductoController extends Controller
             'descripcion' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240'
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.unique' => 'Ya existe un producto con este nombre.',
@@ -86,7 +87,8 @@ class ProductoController extends Controller
             'stock.integer' => 'El stock debe ser un número entero.',
             'imagen.image' => 'El archivo debe ser una imagen.',
             'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg, gif).',
-            'imagen.max' => 'La imagen no debe pesar más de 2MB.'
+            'imagen.max' => 'La imagen no debe pesar más de 10MB.',
+            'imagen.uploaded' => 'La imagen no pudo subirse. Posiblemente sea demasiado grande o el formato no sea válido.'
         ]);
 
         $data = $request->only(['nombre', 'descripcion', 'precio', 'stock']);
