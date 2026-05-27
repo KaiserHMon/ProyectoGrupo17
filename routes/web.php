@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ConsultaController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClienteController;
 
 // Ruta principal - muestra la página de inicio
 Route::get('/', function () {
@@ -37,8 +40,20 @@ Route::get('/quienes-somos', function() {
     return view('quienes-somos');
 });
 
-Route::get('/usuarios/login-register', function() {
-    return view('/usuarios/login-register');
+// Rutas de autenticación — sin protección
+Route::get('/usuarios/login-register', [AuthController::class, 'formularioRegistroInicio']);
+Route::post('/usuarios/registrar',     [AuthController::class, 'registrar'])->name('usuarios.registrar');
+Route::post('/usuarios/autenticar',    [AuthController::class, 'autenticar'])->name('usuarios.autenticar');
+Route::post('/usuarios/logout',        [AuthController::class, 'logout'])->name('usuarios.logout');
+
+// Rutas protegidas — solo admin logueado
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'dashboard']);
+});
+
+// Rutas protegidas — solo cliente logueado
+Route::middleware(['auth', 'rol:cliente'])->group(function () {
+    Route::get('/cliente', [ClienteController::class, 'dashboard']);
 });
 
 // Muestra el formulario de consultas

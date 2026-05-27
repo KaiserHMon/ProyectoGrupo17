@@ -7,6 +7,6 @@
 
 <p>funcionoooooooooooooooooo</p>
 
-<h2>sos admin q chad</h2>
+<h2>sos cliente q chad</h2>
 
 @endsection

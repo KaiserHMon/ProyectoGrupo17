@@ -33,11 +33,14 @@ class UsuarioController extends Controller
             'nombre'        => 'required|string|max:100',
             'email'         => 'required|email|unique:usuarios',
             'password'      => 'required|min:8|confirmed',
-            'rol_id'        => 'required|exists:roles_id',
         ]);
 
-        Usuario::create($request->only(['nombre', 'email', 'password', 'rol_id']));
-        return redirect()->route('usuarios.index')->with('exito', 'Usuario registrado');
+        return Usuario::create([
+            'nombre'   => $request->nombre,
+            'email'    => $request->email,
+            'password' => $request->password,
+            'rol_id'   => 2,
+        ]);
     }
         
 
