@@ -110,6 +110,19 @@ p {
     color: #FCF9F4;
 }
 
+.nav-links form {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-links form button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
 .navbar-toggler-icon{
     background-image: url('/images/svg/menu-burger-horizontal-svgrepo-com.svg');
     background-size: contain;

@@ -16,9 +16,24 @@
           <a href="/quienes-somos" class="nav-link fw-bold">Quiénes Somos</a>
           <a href="/consultas" class="nav-link fw-bold">Consultas</a>
 
-          <a href="/usuarios/login-register" class="nav-link">
-            <img src="{{ asset('images/svg/login-svgrepo-com.svg') }}" alt="Iniciar Sesión" width="30" height="30">
-          </a>
+          @auth
+            @if(Auth::user()->rol->nombre === 'admin')
+              <a href="/admin" class="nav-link fw-bold">Panel Admin</a>
+            @elseif(Auth::user()->rol->nombre === 'cliente')
+              <a href="/cliente" class="nav-link fw-bold">Mi Cuenta</a>
+            @endif
+
+            <form action="{{ route('usuarios.logout') }}" method="POST">
+              @csrf
+              <button type="submit" class="nav-link fw-bold">Cerrar Sesión</button>
+            </form>
+          @endauth
+
+          @guest
+            <a href="/usuarios/login-register" class="nav-link">
+              <img src="{{ asset('images/svg/login-svgrepo-com.svg') }}" alt="Iniciar Sesión" width="30" height="30">
+            </a>
+          @endguest
         </div>
       </div>
     </div>
