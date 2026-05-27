@@ -6,36 +6,36 @@ use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\CarritoController;
+use App\Http\Controllers\VentaController;
 
-// Ruta principal - muestra la página de inicio
+# Principal
 Route::get('/', function () {
     return view('principal');
 });
 
-// Muestra la página de términos y condiciones
+# Terminos de uso
 Route::get('/terminos-de-uso', function () {
     return view('terminos-de-uso');
 });
 
-// Muestra el formulario de contacto
+# Contacto
 Route::get('/contacto', function () {
     return view('contacto');
 });
 
-// Procesa el envío del formulario de contacto
 Route::post('/contacto', [ContactoController::class, 'procesar']);
 
-// Muestra la página de comercialización
+# Comercializacion
 Route::get('/comercializacion', function () {
     return view('comercializacion');
 });
 
-// Muestra el catálogo de productos
-Route::get('/catalogo', function () {
-    return view('catalogo');
-});
+# Catalogo
+Route::get('/catalogo', [ProductoController::class, 'mostrar']);
 
-// Muestra información sobre la empresa
+# Quienes somos
 Route::get('/quienes-somos', function() {
     return view('quienes-somos');
 });
@@ -56,10 +56,39 @@ Route::middleware(['auth', 'rol:cliente'])->group(function () {
     Route::get('/cliente', [ClienteController::class, 'dashboard']);
 });
 
-// Muestra el formulario de consultas
+# Consultas
 Route::get('/consultas', function() {
     return view('consultas');
 });
 
-// Procesa el envío del formulario de consultas
 Route::post('/consultas', [ConsultaController::class, 'procesar']);
+
+
+
+/*
+Seccion de clientes
+*/
+Route::middleware(['auth', 'rol:cliente'])->group(function() {
+
+    #Carrito de compras
+    Route::post('/carrito/agregar/{id}', [CarritoController::class, 'add'])->name('carrito.add');
+    Route::get('/carrito', [CarritoController::class, 'show'])->name('carrito.show');
+    Route::post('/carrito/confirmar', [VentaController::class, 'confirmar'])->name('venta.confirmar');
+    Route::patch('/carrito/detalle/{id}', [CarritoController::class, 'update'])->name('carrito.update');
+    Route::delete('/carrito/detalle/{id}', [CarritoController::class, 'destroy'])->name('carrito.destroy');
+    Route::delete('/carrito/cancelar', [VentaController::class, 'cancelar'])->name('venta.cancelar');
+
+});
+
+/*
+Seccion de admin
+*/
+Route::middleware(['auth', 'rol:admin'])->group(function() {
+
+    # Seccion de productos
+    Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos.index');
+    Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
+    Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
+    Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
+
+});

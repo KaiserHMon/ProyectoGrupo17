@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rol;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -42,7 +43,7 @@ class UsuarioController extends Controller
             'rol_id'   => 2,
         ]);
     }
-        
+
 
     /**
      * Display the specified resource.

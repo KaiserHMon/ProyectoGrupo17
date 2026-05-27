@@ -10,7 +10,7 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarNav">
-        <div class="navbar-nav ms-auto nav-links">
+        <div class="navbar-nav ms-auto nav-links align-items-center">
           <a href="/catalogo" class="nav-link fw-bold">Catálogo</a>
           <a href="/comercializacion" class="nav-link fw-bold">Comercialización</a>
           <a href="/quienes-somos" class="nav-link fw-bold">Quiénes Somos</a>

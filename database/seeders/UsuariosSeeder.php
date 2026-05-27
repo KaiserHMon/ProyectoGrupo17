@@ -14,11 +14,11 @@ class UsuariosSeeder extends Seeder
     public function run(): void
     {
         $usuarios = [
-            ['nombre' => 'Benjamin',   'email' => 'benjaharvey@mail.com', 'password' => '12345', 'rol_id' => 1],
+            ['nombre' => 'Benjamin', 'email' => 'benjaharvey@mail.com', 'password' => '12345', 'rol_id' => 1],
+            ['nombre' => 'Cliente Prueba', 'email' => 'cliente@prueba.com', 'password' => 'cliente123', 'rol_id' => 2],
         ];
 
         foreach ($usuarios as $usuario) {
-            // firstOrCreate evita duplicados si se ejecuta más de una vez
             Usuario::firstOrCreate(['email' => $usuario['email']], $usuario);
         }
     }
