@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\VentaCabecera;
-use App\Models\Producto;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class VentaController extends Controller
 {
@@ -17,9 +17,10 @@ class VentaController extends Controller
         }
 
         $usuarioId = Auth::id();
+        $ventaId = null;
 
         try {
-            DB::transaction(function () use ($usuarioId) {
+            DB::transaction(function () use ($usuarioId, &$ventaId) {
                 // 1. Obtener la VentaCabecera con estado = 'pendiente' del usuario
                 $cabecera = VentaCabecera::where('usuario_id', $usuarioId)
                     ->where('estado', 'pendiente')
@@ -43,18 +44,46 @@ class VentaController extends Controller
                     $producto->stock -= $detalle->cantidad;
                     $producto->save();
                 }
+
+                $ventaId = $cabecera->id;
             });
 
             // 5. Redireccionar a una vista de éxito
             $user = Auth::user();
             return view('checkout-exito', [
-                'nombre' => $user->name,
-                'email' => $user->email
+                'nombre' => $user->nombre ?? $user->name,
+                'email' => $user->email,
+                'ventaId' => $ventaId
             ]);
 
         } catch (\Exception $e) {
             return redirect()->route('carrito.show')->with('error', $e->getMessage());
         }
+    }
+
+    public function descargarComprobante($id)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('error', 'Debes iniciar sesión para descargar el comprobante.');
+        }
+
+        $usuarioId = Auth::id();
+
+        // Obtener la venta confirmada del usuario logueado con sus detalles y productos
+        $venta = VentaCabecera::where('id', $id)
+            ->where('usuario_id', $usuarioId)
+            ->where('estado', 'confirmado')
+            ->with(['detalles.producto', 'usuario'])
+            ->first();
+
+        if (!$venta) {
+            abort(404, 'Comprobante no encontrado.');
+        }
+
+        // Generar el PDF
+        $pdf = Pdf::loadView('comprobante-pdf', compact('venta'));
+
+        return $pdf->download("comprobante_compra_{$venta->id}.pdf");
     }
 
     public function cancelar()
@@ -83,4 +112,7 @@ class VentaController extends Controller
             return redirect()->route('carrito.show')->with('error', 'Ocurrió un error al intentar cancelar la compra: ' . $e->getMessage());
         }
     }
+
+
+
 }

@@ -18,13 +18,13 @@
           <div class="card-body p-3">
             <h6 class="fw-bold mb-3" style="color:#622b16; font-family:'Noto Serif',serif; font-size:0.85rem; text-transform:uppercase; letter-spacing:.05em;">Acciones</h6>
             <div class="nav flex-column nav-pills maie-auth-nav gap-1" id="adminTabs" role="tablist">
-              <button class="nav-link active text-start" data-bs-toggle="pill" data-bs-target="#panel-productos" type="button" role="tab">
+              <button class="nav-link {{ ($activeTab ?? 'productos') === 'productos' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-productos" type="button" role="tab">
                 Productos
               </button>
-              <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#panel-usuarios" type="button" role="tab">
+              <button class="nav-link {{ ($activeTab ?? 'productos') === 'usuarios' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-usuarios" type="button" role="tab">
                 Usuarios Registrados
               </button>
-              <button class="nav-link text-start" data-bs-toggle="pill" data-bs-target="#panel-ventas" type="button" role="tab">
+              <button class="nav-link {{ ($activeTab ?? 'productos') === 'ventas' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-ventas" type="button" role="tab">
                 Ventas Realizadas
               </button>
             </div>
@@ -37,7 +37,7 @@
         <div class="tab-content">
 
           {{-- Panel de Productos --}}
-          <div class="tab-pane fade show active" id="panel-productos" role="tabpanel">
+          <div class="tab-pane fade {{ ($activeTab ?? 'productos') === 'productos' ? 'show active' : '' }}" id="panel-productos" role="tabpanel">
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
                     {{ session('success') }}
@@ -97,7 +97,10 @@
 
                         <div class="col-12 col-sm-6">
                           <label class="form-label text-maie fw-medium" for="nuevo-imagen">Imagen del producto</label>
-                          <input type="file" id="nuevo-imagen" name="imagen" class="maie-input" accept="image/*" style="padding: 0.45rem 1rem; cursor: pointer;">
+                          <input type="file" id="nuevo-imagen" name="imagen" class="maie-input" accept=".jpg,.jpeg,.png,image/jpeg,image/png" style="padding: 0.45rem 1rem; cursor: pointer;">
+                          <div class="form-text text-muted mt-1" style="font-size: 0.78rem;">
+                            <i class="bi bi-info-circle-fill text-maie me-1"></i>Formatos permitidos: <strong>JPG, JPEG, PNG</strong>. Peso máximo: <strong>2 MB</strong>.
+                          </div>
                         </div>
 
                         <div class="col-12">
@@ -134,7 +137,9 @@
                         <tr>
                           <td>
                             @php
-                                $imagenPath = $producto->imagen ? 'images/productos/' . $producto->imagen : 'images/productos/maie-1.jpg';
+                                $imagenPath = $producto->imagen 
+                                    ? 'storage/productos/' . $producto->imagen 
+                                    : 'images/productos/maie-1.jpg';
                             @endphp
                             <img src="{{ asset($imagenPath) }}" alt="{{ $producto->nombre }}" class="rounded-3" style="width: 50px; height: 50px; object-fit: cover; border: 1px solid rgba(98,43,22,0.1);">
                           </td>
@@ -148,15 +153,15 @@
                             @endif
                           </td>
                           <td class="text-end">
-                            <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle p-2 border-0 me-1" 
-                                    data-bs-toggle="modal" 
-                                    data-bs-target="#modalEditar" 
-                                    data-id="{{ $producto->id }}" 
-                                    data-nombre="{{ $producto->nombre }}" 
-                                    data-descripcion="{{ $producto->descripcion }}" 
-                                    data-precio="{{ $producto->precio }}" 
-                                    data-stock="{{ $producto->stock }}" 
-                                    data-imagen="{{ $producto->imagen ? asset('images/productos/' . $producto->imagen) : asset('images/productos/maie-1.jpg') }}"
+                            <button type="button" class="btn btn-sm btn-outline-secondary rounded-circle p-2 border-0 me-1"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalEditar"
+                                    data-id="{{ $producto->id }}"
+                                    data-nombre="{{ $producto->nombre }}"
+                                    data-descripcion="{{ $producto->descripcion }}"
+                                    data-precio="{{ $producto->precio }}"
+                                    data-stock="{{ $producto->stock }}"
+                                    data-imagen="{{ $producto->imagen ? asset('storage/productos/' . $producto->imagen) : asset('images/productos/maie-1.jpg') }}"
                                     title="Editar producto">
                                 <i class="bi bi-pencil-fill"></i>
                             </button>
@@ -183,7 +188,7 @@
           </div>
 
           {{-- Usuarios Registrados --}}
-          <div class="tab-pane fade" id="panel-usuarios" role="tabpanel">
+          <div class="tab-pane fade {{ ($activeTab ?? 'productos') === 'usuarios' ? 'show active' : '' }}" id="panel-usuarios" role="tabpanel">
             <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
               <div class="card-body p-4 p-md-5">
                 <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Usuarios Registrados</h2>
@@ -227,7 +232,7 @@
           </div>
 
           {{-- Ventas Realizadas --}}
-          <div class="tab-pane fade" id="panel-ventas" role="tabpanel">
+          <div class="tab-pane fade {{ ($activeTab ?? 'productos') === 'ventas' ? 'show active' : '' }}" id="panel-ventas" role="tabpanel">
             <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
               <div class="card-body p-4 p-md-5">
                 <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Ventas Realizadas</h2>
@@ -242,11 +247,41 @@
                         <th class="fw-semibold text-maie">Productos</th>
                         <th class="fw-semibold text-maie">Total</th>
                         <th class="fw-semibold text-maie">Estado</th>
-                        <th class="fw-semibold text-maie">Fecha</th>
+                        <th class="fw-semibold text-maie">Fecha de creacion</th>
                       </tr>
                     </thead>
                     <tbody>
-
+                      @forelse($ventas as $venta)
+                        <tr>
+                          <td class="fw-bold text-maie">#{{ $venta->id }}</td>
+                          <td>{{ $venta->usuario->nombre ?? 'N/A' }}</td>
+                          <td>
+                            <ul class="list-unstyled mb-0">
+                              @foreach($venta->detalles as $detalle)
+                                <li class="mb-1" style="font-size: 0.85rem;">
+                                  <span class="badge bg-secondary-subtle text-secondary-emphasis rounded-pill me-1" style="font-size:0.7rem; padding: 0.2rem 0.4rem;">
+                                    {{ $detalle->cantidad }}x
+                                  </span>
+                                  <span class="fw-semibold">{{ $detalle->producto->nombre ?? 'Producto no disponible' }}</span>
+                                </li>
+                              @endforeach
+                            </ul>
+                          </td>
+                          <td class="fw-bold">$ {{ number_format($venta->total, 2, ',', '.') }}</td>
+                          <td>
+                            @if($venta->estado === 'confirmado')
+                              <span class="badge bg-success px-2.5 py-1.5 rounded-pill">Confirmado</span>
+                            @else
+                              <span class="badge bg-warning px-2.5 py-1.5 rounded-pill">{{ ucfirst($venta->estado) }}</span>
+                            @endif
+                          </td>
+                          <td>{{ $venta->created_at->format('d/m/Y H:i') }}</td>
+                        </tr>
+                      @empty
+                        <tr>
+                          <td colspan="6" class="text-center py-4 text-muted">No hay ventas realizadas aún.</td>
+                        </tr>
+                      @endforelse
                     </tbody>
                   </table>
                 </div>
@@ -297,7 +332,10 @@
 
             <div class="col-12 col-sm-6">
               <label class="form-label text-maie fw-medium" for="editar-imagen">Imagen del producto (opcional)</label>
-              <input type="file" id="editar-imagen" name="imagen" class="maie-input" accept="image/*" style="padding: 0.45rem 1rem; cursor: pointer;">
+              <input type="file" id="editar-imagen" name="imagen" class="maie-input" accept=".jpg,.jpeg,.png,image/jpeg,image/png" style="padding: 0.45rem 1rem; cursor: pointer;">
+              <div class="form-text text-muted mt-1" style="font-size: 0.78rem;">
+                <i class="bi bi-info-circle-fill text-maie me-1"></i>Formatos permitidos: <strong>JPG, JPEG, PNG</strong>. Peso máximo: <strong>2 MB</strong>.
+              </div>
             </div>
 
             <div class="col-12 d-flex gap-3 align-items-center mt-3">

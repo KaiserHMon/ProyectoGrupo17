@@ -292,3 +292,41 @@ p {
         display: none;
     }
 }
+
+/* ========================================
+   PRODUCTOS SIN STOCK
+   ======================================== */
+.card-out-of-stock {
+    opacity: 0.85;
+    background-color: #f7f4ee !important;
+    border: 1px dashed rgba(98, 43, 22, 0.2) !important;
+}
+
+.card-out-of-stock:hover {
+    transform: none !important;
+    box-shadow: 0 4px 8px rgba(98, 43, 22, 0.05) !important;
+    border-color: rgba(98, 43, 22, 0.2) !important;
+}
+
+.card-out-of-stock .card-img-top {
+    filter: grayscale(60%) contrast(90%);
+}
+
+.badge-out-of-stock {
+    background-color: #622b16 !important;
+    color: #FCF9F4 !important;
+    font-family: 'Be Vietnam Pro', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.btn-out-of-stock {
+    background-color: #e6dfd5 !important;
+    border-color: #d8cfc3 !important;
+    color: #8c7d6c !important;
+    cursor: not-allowed !important;
+    font-weight: 500;
+    pointer-events: none;
+}
+

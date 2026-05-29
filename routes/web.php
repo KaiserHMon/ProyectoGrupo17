@@ -77,6 +77,7 @@ Route::middleware(['auth', 'rol:cliente'])->group(function() {
     Route::patch('/carrito/detalle/{id}', [CarritoController::class, 'update'])->name('carrito.update');
     Route::delete('/carrito/detalle/{id}', [CarritoController::class, 'destroy'])->name('carrito.destroy');
     Route::delete('/carrito/cancelar', [VentaController::class, 'cancelar'])->name('venta.cancelar');
+    Route::get('/carrito/comprobante/{id}', [VentaController::class, 'descargarComprobante'])->name('venta.comprobante');
 
 });
 
@@ -84,11 +85,18 @@ Route::middleware(['auth', 'rol:cliente'])->group(function() {
 Seccion de admin
 */
 Route::middleware(['auth', 'rol:admin'])->group(function() {
+    #Seccion de metricas
 
     # Seccion de productos
     Route::get('/admin/productos', [ProductoController::class, 'index'])->name('admin.productos.index');
     Route::post('/admin/productos', [ProductoController::class, 'store'])->name('admin.productos.store');
     Route::put('/admin/productos/{id}', [ProductoController::class, 'update'])->name('admin.productos.update');
     Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
+
+    #Seccion de usuarios
+
+    #Seccion de ventas realizadas
+
+    #Seccion de contactos y consultas
 
 });
