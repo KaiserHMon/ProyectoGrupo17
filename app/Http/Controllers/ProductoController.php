@@ -5,17 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class ProductoController extends Controller
 {
-    /**
-     * Muestra el panel de administración (Dashboard) con todos los productos.
-     */
-    public function index()
-    {
-        $productos = Producto::all();
-        return view('backend.admin.dashboard', compact('productos'));
-    }
 
     /**
      * Muestra la lista de productos al público (Catálogo).
@@ -32,11 +26,16 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:50|unique:productos,nombre',
+            'nombre' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('productos', 'nombre')->whereNull('deleted_at')
+            ],
             'descripcion' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240'
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.unique' => 'Ya existe un producto con este nombre.',
@@ -46,8 +45,8 @@ class ProductoController extends Controller
             'stock.required' => 'El stock es obligatorio.',
             'stock.integer' => 'El stock debe ser un número entero.',
             'imagen.image' => 'El archivo debe ser una imagen.',
-            'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg, gif).',
-            'imagen.max' => 'La imagen no debe pesar más de 10MB.',
+            'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg).',
+            'imagen.max' => 'La imagen no debe pesar más de 2MB.',
             'imagen.uploaded' => 'La imagen no pudo subirse. Posiblemente sea demasiado grande o el formato no sea válido.'
         ]);
 
@@ -55,7 +54,7 @@ class ProductoController extends Controller
 
         if ($request->hasFile('imagen')) {
             $imageName = time() . '.' . $request->imagen->extension();
-            $request->imagen->move(public_path('images/productos'), $imageName);
+            $request->imagen->storeAs('productos', $imageName, 'public');
             $data['imagen'] = $imageName;
         }
 
@@ -72,11 +71,16 @@ class ProductoController extends Controller
         $producto = Producto::findOrFail($id);
 
         $request->validate([
-            'nombre' => 'required|string|max:50|unique:productos,nombre,' . $producto->id,
+            'nombre' => [
+                'required',
+                'string',
+                'max:50',
+                Rule::unique('productos', 'nombre')->ignore($producto->id)->whereNull('deleted_at')
+            ],
             'descripcion' => 'required|string|max:255',
             'precio' => 'required|numeric|min:0',
             'stock' => 'required|integer|min:0',
-            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240'
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
         ], [
             'nombre.required' => 'El nombre es obligatorio.',
             'nombre.unique' => 'Ya existe un producto con este nombre.',
@@ -86,21 +90,21 @@ class ProductoController extends Controller
             'stock.required' => 'El stock es obligatorio.',
             'stock.integer' => 'El stock debe ser un número entero.',
             'imagen.image' => 'El archivo debe ser una imagen.',
-            'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg, gif).',
-            'imagen.max' => 'La imagen no debe pesar más de 10MB.',
+            'imagen.mimes' => 'La imagen debe tener un formato válido (jpeg, png, jpg).',
+            'imagen.max' => 'La imagen no debe pesar más de 2MB.',
             'imagen.uploaded' => 'La imagen no pudo subirse. Posiblemente sea demasiado grande o el formato no sea válido.'
         ]);
 
         $data = $request->only(['nombre', 'descripcion', 'precio', 'stock']);
 
         if ($request->hasFile('imagen')) {
-            // Eliminar imagen anterior si existe y no es la default
-            if ($producto->imagen && File::exists(public_path('images/productos/' . $producto->imagen))) {
-                File::delete(public_path('images/productos/' . $producto->imagen));
+            // Eliminar imagen anterior si existe en storage
+            if ($producto->imagen && Storage::disk('public')->exists('productos/' . $producto->imagen)) {
+                Storage::disk('public')->delete('productos/' . $producto->imagen);
             }
 
             $imageName = time() . '.' . $request->imagen->extension();
-            $request->imagen->move(public_path('images/productos'), $imageName);
+            $request->imagen->storeAs('productos', $imageName, 'public');
             $data['imagen'] = $imageName;
         }
 
