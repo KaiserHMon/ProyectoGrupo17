@@ -206,7 +206,23 @@
                       </tr>
                     </thead>
                     <tbody>
-
+                      @forelse($usuarios as $usuario)
+                      <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $usuario->nombre }}</td>
+                        <td>{{ $usuario->email }}</td>
+                        <td>
+                          <span class="badge rounded-pill" style="background-color:#622b16;">
+                            {{ $usuario->rol->nombre ?? 'Sin rol' }}
+                          </span>
+                        </td>
+                        <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
+                      </tr>
+                      @empty
+                      <tr>
+                        <td colspan="5" class="text-center py-4 text-muted">No hay usuarios registrados</td>
+                      </tr>
+                      @endforelse
                     </tbody>
                   </table>
                 </div>
