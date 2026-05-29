@@ -9,13 +9,15 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\Usuario
+Controller;
 
 # Principal
 Route::get('/', function () {
     return view('principal');
 });
 
-# Terminos de uso
+# Terminos de uso -- modifico para commit
 Route::get('/terminos-de-uso', function () {
     return view('terminos-de-uso');
 });
@@ -92,3 +94,6 @@ Route::middleware(['auth', 'rol:admin'])->group(function() {
     Route::delete('/admin/productos/{id}', [ProductoController::class, 'destroy'])->name('admin.productos.destroy');
 
 });
+
+
+Route::patch('/admin/usuarios/{usuario}/rol', [UsuarioController::class, 'updateRol'])->name('admin.usuarios.updateRol');
