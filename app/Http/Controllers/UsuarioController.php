@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Rol;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UsuarioController extends Controller
 {
@@ -69,12 +70,28 @@ class UsuarioController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    public function updateRol(Usuario $usuario)
+    {
+        if ($usuario->id === Auth::id()) {
+            return back()->with('error_usuarios', 'No podés cambiar tu propio rol.');
+        }
+
+        $nuevoNombre = $usuario->rol->nombre === 'admin' ? 'cliente' : 'admin';
+        $nuevoRol = Rol::where('nombre', $nuevoNombre)->firstOrFail();
+        $usuario->update(['rol_id' => $nuevoRol->id]);
+
+        return back()->with('success_usuarios', "Rol de {$usuario->nombre} cambiado a {$nuevoNombre}.");
+    }
+
     public function destroy(Usuario $usuario)
     {
+        if ($usuario->id === Auth::id()) {
+            return back()->with('error_usuarios', 'No podés eliminarte a vos mismo.');
+        }
+
+        $nombre = $usuario->nombre;
         $usuario->delete();
-        return redirect()->route('usuarios.index')->with('exito', 'Usuario dado de baja.');
+
+        return back()->with('success_usuarios', "Usuario {$nombre} eliminado correctamente.");
     }
 }

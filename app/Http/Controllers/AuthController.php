@@ -26,7 +26,8 @@ class AuthController extends Controller
     }
 
     /*
-
+    Recibe los datos ingresados en el formulario HTML, valida que esten ingresados un email y una contraseña, si el nombre del rol del usuario es admin, 
+    redirije al panel de administrador, caso contraro, redirije al panel cliente
     */
 
     public function autenticar(Request $request){
@@ -44,7 +45,7 @@ class AuthController extends Controller
     }
 
     /*
-
+    
     */
     
     public function logout(Request $request){
