@@ -30,6 +30,12 @@ class CarritoController extends Controller
             ['venta_cabecera_id' => $cabecera->id, 'producto_id' => $productoId]
         );
 
+        // Validar stock disponible
+        $nuevaCantidad = $detalle->exists ? $detalle->cantidad + 1 : 1;
+        if ($nuevaCantidad > $producto->stock) {
+            return redirect()->back()->with('error', 'No hay suficiente stock disponible de "' . $producto->nombre . '" para añadir al carrito.');
+        }
+
         // 3. Actualizar cantidad
         if ($detalle->exists) {
             $detalle->cantidad += 1;

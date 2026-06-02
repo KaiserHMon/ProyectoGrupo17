@@ -41,7 +41,9 @@
                         <td>
                             <div class="d-flex align-items-center">
                                 @php
-                                    $imagenPath = $detalle->producto->imagen ? 'images/productos/' . $detalle->producto->imagen : 'images/productos/maie-1.jpg';
+                                    $imagenPath = $detalle->producto->imagen 
+                                        ? 'storage/productos/' . $detalle->producto->imagen 
+                                        : 'images/productos/maie-1.jpg';
                                 @endphp
                                 <img src="{{ asset($imagenPath) }}" alt="{{ $detalle->producto->nombre }}" class="rounded-3 me-3" style="width: 60px; height: 60px; object-fit: cover;">
                                 <div>
