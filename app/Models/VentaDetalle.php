@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Modelo para gestionar los detalles de cada venta (items del carrito).
+ */
 class VentaDetalle extends Model
 {
     use HasFactory, SoftDeletes;
@@ -19,6 +22,9 @@ class VentaDetalle extends Model
         'precio_unitario'
     ];
 
+    /**
+     * Relación: Un detalle pertenece a una venta cabecera.
+     */
     public function venta()
     {
         return $this->belongsTo(VentaCabecera::class, 'venta_cabecera_id');
@@ -26,6 +32,6 @@ class VentaDetalle extends Model
 
     public function producto()
     {
-        return $this->belongsTo(Producto::class);
+        return $this->belongsTo(Producto::class)->withTrashed();
     }
 }

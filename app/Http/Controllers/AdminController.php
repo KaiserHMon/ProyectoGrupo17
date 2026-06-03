@@ -9,6 +9,9 @@ use App\Models\Usuario;
 
 class AdminController extends Controller
 {
+    /**
+     * Muestra el dashboard del administrador con productos, usuarios y ventas.
+     */
     public function dashboard(Request $request)
     {
         $productos = Producto::all();

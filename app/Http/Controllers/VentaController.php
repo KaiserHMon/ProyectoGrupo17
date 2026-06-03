@@ -10,6 +10,9 @@ use Barryvdh\DomPDF\Facade\Pdf;
 
 class VentaController extends Controller
 {
+    /**
+     * Confirma la compra del carrito pendiente y reduce el stock.
+     */
     public function confirmar(Request $request)
     {
         if (!Auth::check()) {
@@ -50,7 +53,7 @@ class VentaController extends Controller
 
             // 5. Redireccionar a una vista de éxito
             $user = Auth::user();
-            return view('checkout-exito', [
+            return view('backend.cliente.checkout-exito', [
                 'nombre' => $user->nombre ?? $user->name,
                 'email' => $user->email,
                 'ventaId' => $ventaId
@@ -61,6 +64,9 @@ class VentaController extends Controller
         }
     }
 
+    /**
+     * Descarga el comprobante PDF de una compra confirmada.
+     */
     public function descargarComprobante($id)
     {
         if (!Auth::check()) {
@@ -81,11 +87,14 @@ class VentaController extends Controller
         }
 
         // Generar el PDF
-        $pdf = Pdf::loadView('comprobante-pdf', compact('venta'));
+        $pdf = Pdf::loadView('backend.cliente.comprobante-pdf', compact('venta'));
 
         return $pdf->download("comprobante_compra_{$venta->id}.pdf");
     }
 
+    /**
+     * Cancela la compra pendiente del usuario.
+     */
     public function cancelar()
     {
         if (!Auth::check()) {

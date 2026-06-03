@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 
 class ClienteController extends Controller
 {
-        public function dashboard(){
+    /**
+     * Muestra el dashboard del cliente.
+     */
+    public function dashboard(){
         return view('backend.dashboard_cliente');
     }
 }

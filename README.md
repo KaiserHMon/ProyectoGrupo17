@@ -86,7 +86,17 @@ copy .env.example .env
 php artisan key:generate
 ```
 
-**Paso 5 — Verificar en el archivo .env que SESSION_DRIVER sea igual a file (LINEA 30)**
+**Paso 5 — Verificar en el archivo .env que SESSION_DRIVER sea igual a database (LINEA 30)**
 ```bash
- SESSION_DRIVER=file
+ SESSION_DRIVER=database
+```
+
+**Paso 6 - Verificar que en .env la conexion a la base de datos es a SQLITE**
+```bash
+DB_CONNECTION=sqlite
+```
+
+**Paso 7 - Ejecutar migraciones**
+```bash
+php artisan migrate
 ```
