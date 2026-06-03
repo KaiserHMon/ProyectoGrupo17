@@ -41,7 +41,7 @@ class AuthController extends Controller
         }
         return redirect('/cliente');
         }
-        return back()->withErrors(['email' => 'Email o contraseña incorrectos']);
+        return back()->withErrors(['email' => 'Email o contraseña incorrectos'], 'login');
     }
 
     /*
