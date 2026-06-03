@@ -194,6 +194,20 @@
                 <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Usuarios Registrados</h2>
                 <p class="text-muted mb-4" style="font-size:.9rem;">Listado de todos los usuarios que se han registrado en la plataforma.</p>
 
+                @if(session('success_usuarios'))
+                  <div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                    {{ session('success_usuarios') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @endif
+
+                @if(session('error_usuarios'))
+                  <div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
+                    {{ session('error_usuarios') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @endif
+
                 <div class="table-responsive">
                   <table class="table table-hover align-middle" style="font-size:.9rem;">
                     <thead>
@@ -203,6 +217,7 @@
                         <th class="fw-semibold text-maie">Correo</th>
                         <th class="fw-semibold text-maie">Rol</th>
                         <th class="fw-semibold text-maie">Fecha de registro</th>
+                        <th class="fw-semibold text-maie text-end">Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -217,10 +232,58 @@
                           </span>
                         </td>
                         <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
+                        <td class="text-end">
+                          @if($usuario->id !== auth()->id())
+                            <div class="dropdown">
+                              <button class="btn btn-sm btn-outline-secondary rounded-circle p-2 border-0"
+                                      type="button"
+                                      data-bs-toggle="dropdown"
+                                      aria-expanded="false"
+                                      title="Opciones">
+                                <i class="bi bi-three-dots-vertical"></i>
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+
+                                {{-- Cambiar rol --}}
+                                <li>
+                                  <form action="{{ route('admin.usuarios.updateRol', $usuario->id) }}" method="POST"
+                                        onsubmit="return confirm('¿Cambiar el rol de {{ $usuario->nombre }} a {{ $usuario->rol->nombre === 'admin' ? 'cliente' : 'admin' }}?')">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit" class="dropdown-item">
+                                      @if($usuario->rol->nombre === 'admin')
+                                        <i class="bi bi-person me-2 text-warning"></i>Hacer Cliente
+                                      @else
+                                        <i class="bi bi-shield-check me-2" style="color:#622b16;"></i>Hacer Admin
+                                      @endif
+                                    </button>
+                                  </form>
+                                </li>
+
+                                <li><hr class="dropdown-divider"></li>
+
+                                {{-- Eliminar --}}
+                                <li>
+                                  <form action="{{ route('admin.usuarios.destroy', $usuario->id) }}" method="POST"
+                                        onsubmit="return confirm('¿Estás seguro de que querés eliminar a {{ $usuario->nombre }}? Esta acción no se puede deshacer.')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="dropdown-item text-danger">
+                                      <i class="bi bi-trash3 me-2"></i>Eliminar usuario
+                                    </button>
+                                  </form>
+                                </li>
+
+                              </ul>
+                            </div>
+                          @else
+                            <span class="text-muted" style="font-size:.8rem;">Vos</span>
+                          @endif
+                        </td>
                       </tr>
                       @empty
                       <tr>
-                        <td colspan="5" class="text-center py-4 text-muted">No hay usuarios registrados</td>
+                        <td colspan="6" class="text-center py-4 text-muted">No hay usuarios registrados</td>
                       </tr>
                       @endforelse
                     </tbody>

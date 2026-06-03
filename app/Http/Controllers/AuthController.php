@@ -25,9 +25,11 @@ class AuthController extends Controller
         return redirect('/cliente');
     }
 
-    /**
-     * Autentica un usuario con email y contraseña.
-     */
+    /*
+    Recibe los datos ingresados en el formulario HTML, valida que esten ingresados un email y una contraseña, si el nombre del rol del usuario es admin,
+    redirije al panel de administrador, caso contraro, redirije al panel cliente
+    */
+
     public function autenticar(Request $request){
         $credenciales = $request->validate(['email' => 'required|email',
                                         'password'  => 'required']);
@@ -39,7 +41,7 @@ class AuthController extends Controller
         }
         return redirect('/cliente');
         }
-        return back()->withErrors(['email' => 'Email o contraseña incorrectos']);
+        return back()->withErrors(['email' => 'Email o contraseña incorrectos'], 'login');
     }
 
     /**
