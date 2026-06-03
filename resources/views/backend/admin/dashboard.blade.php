@@ -7,7 +7,7 @@
 
     <div class="mb-5 text-center">
       <h1 class="display-6 fw-bold">Panel de <span class="fst-italic text-maie">Administración</span></h1>
-      <p class="text-muted">Gestioná el catálogo y el stock de productos.</p>
+      <p class="text-muted">Gestioná tus productos. Revisa tus usuarios, ventas y consultas.</p>
     </div>
 
     <div class="row g-4">
@@ -137,8 +137,8 @@
                         <tr>
                           <td>
                             @php
-                                $imagenPath = $producto->imagen 
-                                    ? 'storage/productos/' . $producto->imagen 
+                                $imagenPath = $producto->imagen
+                                    ? 'storage/productos/' . $producto->imagen
                                     : 'images/productos/maie-1.jpg';
                             @endphp
                             <img src="{{ asset($imagenPath) }}" alt="{{ $producto->nombre }}" class="rounded-3" style="width: 50px; height: 50px; object-fit: cover; border: 1px solid rgba(98,43,22,0.1);">

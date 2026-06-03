@@ -129,11 +129,11 @@ p {
     background-repeat: no-repeat;
 }
 
-.nav-links a[href="/login-register"] img {
+.nav-links a[href*="login-register"] img {
     transition: filter 0.3s ease;
 }
 
-.nav-links a[href="/login-register"]:hover img {
+.nav-links a[href*="login-register"]:hover img {
     filter: brightness(0) invert(1);
 }
 
