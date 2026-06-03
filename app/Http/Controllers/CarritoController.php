@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
+    /**
+     * Añade un producto al carrito del usuario.
+     */
     public function add(Request $request, $productoId)
     {
         if (!Auth::check()) {
@@ -19,7 +22,7 @@ class CarritoController extends Controller
         $usuarioId = Auth::id();
         $producto = Producto::findOrFail($productoId);
 
-        // 1. Buscar/Crear VentaCabecera pendiente
+        // 1. Buscar/Crear VentaCabecera estado:pendiente
         $cabecera = VentaCabecera::firstOrCreate(
             ['usuario_id' => $usuarioId, 'estado' => 'pendiente'],
             ['total' => 0]
@@ -56,6 +59,9 @@ class CarritoController extends Controller
         return redirect()->back()->with('success', 'Producto añadido al carrito correctamente.');
     }
 
+    /**
+     * Muestra la VentaCabecera
+     */
     public function show()
     {
         if (!Auth::check()) {
@@ -68,9 +74,12 @@ class CarritoController extends Controller
             ->with('detalles.producto')
             ->first();
 
-        return view('carrito', compact('cabecera'));
+        return view('backend.cliente.carrito', compact('cabecera'));
     }
 
+    /**
+     * Actualiza un producto del carrito
+     */
     public function update(Request $request, $id)
     {
         if (!Auth::check()) {
@@ -118,6 +127,9 @@ class CarritoController extends Controller
         return redirect()->back()->with('success', 'Cantidad actualizada correctamente.');
     }
 
+    /**
+     * Elimina la VentaCabecera
+     */
     public function destroy($id)
     {
         if (!Auth::check()) {

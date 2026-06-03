@@ -8,16 +8,16 @@ use App\Http\Controllers\UsuarioController;
 
 class AuthController extends Controller
 {
-    //retorna view de la pagina para iniciar sesión o registrarse
+    /**
+     * Retorna la vista para iniciar sesión o registrarse.
+     */
     public function formularioRegistroInicio(){
         return view('usuarios.login-register');
     }
 
-    /*
-    Recibira el parametro request, que contendra los datos ingresados en el formulario HTML de la pagina de inicio de sesion, validara que
-    los datos ingresados cumplan diversos requisitos para ser aceptados
-    */
-
+    /**
+     * Registra un nuevo usuario validando datos del formulario.
+     */
     public function registrar(Request $request){
         $usuario = app(UsuarioController::class)->store($request);
         Auth::login($usuario);
@@ -25,14 +25,13 @@ class AuthController extends Controller
         return redirect('/cliente');
     }
 
-    /*
-
-    */
-
+    /**
+     * Autentica un usuario con email y contraseña.
+     */
     public function autenticar(Request $request){
         $credenciales = $request->validate(['email' => 'required|email',
                                         'password'  => 'required']);
-        
+
         if(Auth::attempt($credenciales)){
             $request->session()->regenerate();
         if(Auth::user()->rol->nombre === 'admin'){
@@ -43,13 +42,12 @@ class AuthController extends Controller
         return back()->withErrors(['email' => 'Email o contraseña incorrectos']);
     }
 
-    /*
-
-    */
-    
+    /**
+     * Cierra la sesión del usuario actual.
+     */
     public function logout(Request $request){
         Auth::logout();
-        
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

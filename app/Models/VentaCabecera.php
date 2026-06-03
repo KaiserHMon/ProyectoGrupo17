@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Modelo para gestionar las cabeceras de ventas (compras).
+ */
 class VentaCabecera extends Model
 {
     use HasFactory, SoftDeletes;
@@ -18,11 +21,17 @@ class VentaCabecera extends Model
         'total'
     ];
 
+    /**
+     * Relación: Una venta pertenece a un usuario.
+     */
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'usuario_id');
     }
 
+    /**
+     * Relación: Una venta tiene muchos detalles.
+     */
     public function detalles()
     {
         return $this->hasMany(VentaDetalle::class);
