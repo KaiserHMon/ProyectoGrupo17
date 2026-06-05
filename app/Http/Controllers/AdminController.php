@@ -21,7 +21,6 @@ class AdminController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
         $activeTab = $request->query('tab', 'productos');
-
         return view('backend.admin.dashboard', compact('productos', 'ventas', 'usuarios', 'activeTab'));
     }
 }

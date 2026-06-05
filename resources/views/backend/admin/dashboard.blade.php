@@ -227,7 +227,7 @@
                         <td>{{ $usuario->nombre }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td>
-                          <span class="badge rounded-pill" style="background-color:#622b16;">
+                          <span class="badge rounded-pill" style="background-color:{{ ($usuario->rol->nombre ?? '') === 'admin' ? '#A0522D' : '#622b16' }};">
                             {{ $usuario->rol->nombre ?? 'Sin rol' }}
                           </span>
                         </td>
