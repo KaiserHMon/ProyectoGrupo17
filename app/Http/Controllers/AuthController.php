@@ -39,7 +39,7 @@ class AuthController extends Controller
         if(Auth::user()->rol->nombre === 'admin'){
             return redirect('/admin');
         }
-        return redirect('/cliente');
+        return redirect('/catalogo');
         }
         return back()->withErrors(['email' => 'Email o contraseña incorrectos'], 'login');
     }

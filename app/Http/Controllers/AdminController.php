@@ -78,10 +78,10 @@ class AdminController extends Controller
         $ingresosTotales = (clone $baseMetricasVentas)->sum('total');
         $ventasRealizadas = (clone $baseMetricasVentas)->count();
         $ticketPromedio = $ventasRealizadas > 0 ? $ingresosTotales / $ventasRealizadas : 0;
-        
+
         // El stock crítico es una métrica de inventario físico en tiempo real, no depende de la fecha
         $productosStockCritico = Producto::where('stock', '<=', 10)->count();
-        
+
         $consultasPendientes = (clone $baseConsultas)->where('estado', 'pendiente')->count();
 
         return view('backend.admin.dashboard', compact(
