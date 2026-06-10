@@ -10,6 +10,6 @@ class ClienteController extends Controller
      * Muestra el dashboard del cliente.
      */
     public function dashboard(){
-        return view('backend.cliente.dashboard_cliente');
+        return view('backend.dashboard_cliente');
     }
 }
