@@ -51,6 +51,46 @@
 
       {{-- Contenido --}}
       <div class="col-12 col-md-9">
+
+        {{-- Filtros de Fecha --}}
+        <form action="{{ url('/admin') }}" method="GET" class="mb-4">
+          <input type="hidden" name="tab" id="filter-tab-input" value="{{ $activeTab ?? 'metricas' }}">
+          <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card-body p-3">
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 px-1">
+                <span class="fw-semibold text-maie mb-1" style="font-size: 0.9rem; font-family: 'Noto Serif', serif;">
+                  <i class="bi bi-calendar3 me-1"></i> Filtrar datos por fecha
+                </span>
+                @if(request('fecha_inicio') || request('fecha_fin'))
+                  <span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 rounded-pill mb-1" style="font-size: 0.75rem;">
+                    Filtro activo
+                  </span>
+                @endif
+              </div>
+              <div class="row align-items-end g-2">
+                <div class="col-12 col-sm-4">
+                  <input type="date" id="fecha_inicio" name="fecha_inicio" class="maie-input py-1.5 px-3" style="font-size: 0.85rem;" value="{{ request('fecha_inicio') }}" placeholder="Desde">
+                  <div class="form-text text-muted m-0 px-1" style="font-size: 0.72rem;">Fecha inicial</div>
+                </div>
+                <div class="col-12 col-sm-4">
+                  <input type="date" id="fecha_fin" name="fecha_fin" class="maie-input py-1.5 px-3" style="font-size: 0.85rem;" value="{{ request('fecha_fin') }}" placeholder="Hasta">
+                  <div class="form-text text-muted m-0 px-1" style="font-size: 0.72rem;">Fecha final</div>
+                </div>
+                <div class="col-12 col-sm-4 d-flex gap-2">
+                  <button type="submit" class="btn btn-custom flex-grow-1 py-1.5 rounded-pill fw-bold" style="font-size: 0.85rem; height: 38px;">
+                    <i class="bi bi-funnel-fill me-1"></i> Filtrar
+                  </button>
+                  @if(request('fecha_inicio') || request('fecha_fin'))
+                    <a href="/admin?tab={{ $activeTab ?? 'metricas' }}" id="btn-reset-filters" class="btn btn-outline-secondary py-1.5 px-3 rounded-pill fw-bold d-flex align-items-center justify-content-center" style="font-size: 0.85rem; height: 38px;" title="Limpiar filtros">
+                      <i class="bi bi-trash-fill"></i>
+                    </a>
+                  @endif
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+
         <div class="tab-content">
 
           {{-- Panel de Métricas --}}
@@ -668,12 +708,29 @@
     });
   }
 
-  // Sincronizar la pestaña activa con el parámetro 'tab' de la URL
+  // Sincronizar la pestaña activa con el parámetro 'tab' de la URL sin perder otros parámetros como fechas
   const tabButtons = document.querySelectorAll('#adminTabs button[data-bs-toggle="pill"]');
   tabButtons.forEach(button => {
     button.addEventListener('shown.bs.tab', function (event) {
       const targetId = event.target.getAttribute('data-bs-target').replace('#panel-', '');
-      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=' + targetId;
+      
+      // Actualizar el input hidden del formulario de filtros
+      const tabInput = document.getElementById('filter-tab-input');
+      if (tabInput) {
+        tabInput.value = targetId;
+      }
+      
+      // Actualizar el link de "Limpiar filtros" para mantener la pestaña actual activa al restablecer
+      const resetLink = document.getElementById('btn-reset-filters');
+      if (resetLink) {
+        resetLink.href = `/admin?tab=${targetId}`;
+      }
+
+      // Mantener los parámetros de fecha en la URL al cambiar de pestaña
+      const urlParams = new URLSearchParams(window.location.search);
+      urlParams.set('tab', targetId);
+      
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + urlParams.toString();
       window.history.replaceState({ path: newUrl }, '', newUrl);
     });
   });
