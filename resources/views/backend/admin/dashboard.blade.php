@@ -5,7 +5,18 @@
 <section class="py-5" style="background-color: #FCF9F4; min-height: 80vh;">
   <div class="container">
 
-    <div class="mb-5 text-center">
+    <style>
+      .metric-card {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+        border: 1px solid rgba(98, 43, 22, 0.08) !important;
+      }
+      .metric-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(98, 43, 22, 0.08) !important;
+      }
+    </style>
+
+    <div class="mb-4 text-center">
       <h1 class="display-6 fw-bold">Panel de <span class="fst-italic text-maie">Administración</span></h1>
       <p class="text-muted">Gestioná tus productos. Revisa tus usuarios, ventas y consultas.</p>
     </div>
@@ -18,14 +29,20 @@
           <div class="card-body p-3">
             <h6 class="fw-bold mb-3" style="color:#622b16; font-family:'Noto Serif',serif; font-size:0.85rem; text-transform:uppercase; letter-spacing:.05em;">Acciones</h6>
             <div class="nav flex-column nav-pills maie-auth-nav gap-1" id="adminTabs" role="tablist">
-              <button class="nav-link {{ ($activeTab ?? 'productos') === 'productos' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-productos" type="button" role="tab">
+              <button class="nav-link {{ ($activeTab ?? 'metricas') === 'metricas' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-metricas" type="button" role="tab">
+                Métricas
+              </button>
+              <button class="nav-link {{ ($activeTab ?? 'metricas') === 'productos' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-productos" type="button" role="tab">
                 Productos
               </button>
-              <button class="nav-link {{ ($activeTab ?? 'productos') === 'usuarios' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-usuarios" type="button" role="tab">
+              <button class="nav-link {{ ($activeTab ?? 'metricas') === 'usuarios' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-usuarios" type="button" role="tab">
                 Usuarios Registrados
               </button>
-              <button class="nav-link {{ ($activeTab ?? 'productos') === 'ventas' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-ventas" type="button" role="tab">
+              <button class="nav-link {{ ($activeTab ?? 'metricas') === 'ventas' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-ventas" type="button" role="tab">
                 Ventas Realizadas
+              </button>
+              <button class="nav-link {{ ($activeTab ?? 'metricas') === 'consultas' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-consultas" type="button" role="tab">
+                Consultas Recibidas
               </button>
             </div>
           </div>
@@ -36,8 +53,118 @@
       <div class="col-12 col-md-9">
         <div class="tab-content">
 
+          {{-- Panel de Métricas --}}
+          <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'metricas' ? 'show active' : '' }}" id="panel-metricas" role="tabpanel">
+            <div class="card shadow-sm rounded-4 mb-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+              <div class="card-body p-4">
+                <div class="mb-4">
+                  <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Métricas de Rendimiento</h2>
+                  <p class="text-muted mb-0" style="font-size:.9rem;">Información general sobre el estado de la tienda y las operaciones.</p>
+                </div>
+
+                <!-- Métrica Principal Centrada -->
+                <div class="row justify-content-center mb-4">
+                  <div class="col-12 col-md-8 text-center">
+                    <div class="card border-0 shadow-sm rounded-4 metric-card p-4" style="background: #FCF9F4;">
+                      <div class="d-flex flex-column align-items-center">
+                        <div class="rounded-circle p-3 bg-success bg-opacity-10 text-success mb-3" style="width: 56px; height: 56px; display: flex; align-items: center; justify-content: center;">
+                          <i class="bi bi-cash-stack fs-3"></i>
+                        </div>
+                        <span class="text-muted fw-semibold text-uppercase mb-1" style="font-size: 0.8rem; letter-spacing: 0.05em;">Ingresos Totales</span>
+                        <h2 class="fw-bold mb-1 text-dark" style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 2.2rem;">
+                          $ {{ number_format($ingresosTotales, 2, ',', '.') }}
+                        </h2>
+                        <small class="text-muted" style="font-size: 0.85rem;">Facturación confirmada de ventas finalizadas</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Otras Métricas en Dos Columnas -->
+                <div class="row g-3">
+
+                  <!-- Columna Izquierda: Ventas -->
+                  <div class="col-12 col-md-6 d-flex flex-column gap-3">
+
+                    <!-- Ticket Promedio -->
+                    <div class="card border-0 shadow-sm rounded-4 metric-card p-3 flex-fill" style="background: #ffffff;">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle p-2 bg-info bg-opacity-10 text-info d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; min-width: 44px;">
+                          <i class="bi bi-receipt fs-4"></i>
+                        </div>
+                        <div>
+                          <span class="text-muted fw-semibold text-uppercase d-block" style="font-size: 0.72rem; letter-spacing: 0.05em; line-height: 1;">Ticket Promedio (AOV)</span>
+                          <h4 class="fw-bold mb-0 text-dark mt-1" style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 1.4rem;">
+                            $ {{ number_format($ticketPromedio, 2, ',', '.') }}
+                          </h4>
+                          <small class="text-muted" style="font-size: 0.75rem;">Gasto promedio por orden confirmada</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Ventas Realizadas -->
+                    <div class="card border-0 shadow-sm rounded-4 metric-card p-3 flex-fill" style="background: #ffffff;">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle p-2 d-flex align-items-center justify-content-center" style="width: 44px; height: 44px; min-width: 44px; color: #6f42c1; background-color: rgba(111, 66, 193, 0.1);">
+                          <i class="bi bi-cart-check fs-4"></i>
+                        </div>
+                        <div>
+                          <span class="text-muted fw-semibold text-uppercase d-block" style="font-size: 0.72rem; letter-spacing: 0.05em; line-height: 1;">Ventas Realizadas</span>
+                          <h4 class="fw-bold mb-0 text-dark mt-1" style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 1.4rem;">
+                            {{ $ventasRealizadas }}
+                          </h4>
+                          <small class="text-muted" style="font-size: 0.75rem;">Volumen total de pedidos confirmados</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Columna Derecha: Operaciones / Soporte -->
+                  <div class="col-12 col-md-6 d-flex flex-column gap-3">
+
+                    <!-- Productos en Stock Crítico -->
+                    <div class="card border-0 shadow-sm rounded-4 metric-card p-3 flex-fill" style="background: #ffffff;">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle p-2 d-flex align-items-center justify-content-center {{ $productosStockCritico > 0 ? 'bg-danger bg-opacity-10 text-danger' : 'bg-success bg-opacity-10 text-success' }}" style="width: 44px; height: 44px; min-width: 44px;">
+                          <i class="bi bi-exclamation-triangle fs-4"></i>
+                        </div>
+                        <div>
+                          <span class="text-muted fw-semibold text-uppercase d-block" style="font-size: 0.72rem; letter-spacing: 0.05em; line-height: 1;">Stock Crítico</span>
+                          <h4 class="fw-bold mb-0 {{ $productosStockCritico > 0 ? 'text-danger' : 'text-success' }} mt-1" style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 1.4rem;">
+                            {{ $productosStockCritico }}
+                          </h4>
+                          <small class="text-muted" style="font-size: 0.75rem;">Productos con stock ≤ 10 unidades</small>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Consultas Pendientes -->
+                    <div class="card border-0 shadow-sm rounded-4 metric-card p-3 flex-fill" style="background: #ffffff;">
+                      <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle p-2 d-flex align-items-center justify-content-center {{ $consultasPendientes > 0 ? 'bg-warning bg-opacity-10 text-warning' : 'bg-success bg-opacity-10 text-success' }}" style="width: 44px; height: 44px; min-width: 44px;">
+                          <i class="bi bi-envelope-exclamation fs-4"></i>
+                        </div>
+                        <div>
+                          <span class="text-muted fw-semibold text-uppercase d-block" style="font-size: 0.72rem; letter-spacing: 0.05em; line-height: 1;">Consultas Pendientes</span>
+                          <h4 class="fw-bold mb-0 mt-1" style="font-family: 'Be Vietnam Pro', sans-serif; font-size: 1.4rem; color: {{ $consultasPendientes > 0 ? '#b27a00' : '#198754' }} !important;">
+                            {{ $consultasPendientes }}
+                          </h4>
+                          <small class="text-muted" style="font-size: 0.75rem;">Consultas de soporte sin resolver</small>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
           {{-- Panel de Productos --}}
-          <div class="tab-pane fade {{ ($activeTab ?? 'productos') === 'productos' ? 'show active' : '' }}" id="panel-productos" role="tabpanel">
+          <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'productos' ? 'show active' : '' }}" id="panel-productos" role="tabpanel">
             @if(session('success'))
                 <div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
                     {{ session('success') }}
@@ -188,7 +315,7 @@
           </div>
 
           {{-- Usuarios Registrados --}}
-          <div class="tab-pane fade {{ ($activeTab ?? 'productos') === 'usuarios' ? 'show active' : '' }}" id="panel-usuarios" role="tabpanel">
+          <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'usuarios' ? 'show active' : '' }}" id="panel-usuarios" role="tabpanel">
             <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
               <div class="card-body p-4 p-md-5">
                 <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Usuarios Registrados</h2>
@@ -295,7 +422,7 @@
           </div>
 
           {{-- Ventas Realizadas --}}
-          <div class="tab-pane fade {{ ($activeTab ?? 'productos') === 'ventas' ? 'show active' : '' }}" id="panel-ventas" role="tabpanel">
+          <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'ventas' ? 'show active' : '' }}" id="panel-ventas" role="tabpanel">
             <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
               <div class="card-body p-4 p-md-5">
                 <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Ventas Realizadas</h2>
@@ -344,6 +471,71 @@
                         <tr>
                           <td colspan="6" class="text-center py-4 text-muted">No hay ventas realizadas aún.</td>
                         </tr>
+                      @endforelse
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          {{-- Consultas Recibidas --}}
+          <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'consultas' ? 'show active' : '' }}" id="panel-consultas" role="tabpanel">
+            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+              <div class="card-body p-4 p-md-5">
+                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Consultas Recibidas</h2>
+                <p class="text-muted mb-4" style="font-size:.9rem;">Listado de consultas de contacto enviadas por los usuarios.</p>
+
+                @if(session('success_consultas'))
+                  <div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
+                    {{ session('success_consultas') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                @endif
+
+                <div class="table-responsive">
+                  <table class="table table-hover align-middle" style="font-size:.9rem;">
+                    <thead>
+                      <tr style="border-bottom: 2px solid rgba(98,43,22,0.15);">
+                        <th class="fw-semibold text-maie">#</th>
+                        <th class="fw-semibold text-maie">Nombre</th>
+                        <th class="fw-semibold text-maie">Correo</th>
+                        <th class="fw-semibold text-maie">Mensaje</th>
+                        <th class="fw-semibold text-maie">Estado</th>
+                        <th class="fw-semibold text-maie">Fecha</th>
+                        <th class="fw-semibold text-maie text-end">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @forelse($consultas as $consulta)
+                      <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td class="fw-bold">{{ $consulta->nombre }}</td>
+                        <td>{{ $consulta->email }}</td>
+                        <td style="max-width: 250px; white-space: normal; word-break: break-all;">{{ $consulta->mensaje }}</td>
+                        <td>
+                          @if($consulta->estado === 'pendiente')
+                            <span class="badge bg-warning text-dark px-2.5 py-1.5 rounded-pill">Pendiente</span>
+                          @else
+                            <span class="badge bg-success px-2.5 py-1.5 rounded-pill">Resuelto</span>
+                          @endif
+                        </td>
+                        <td>{{ $consulta->created_at->format('d/m/Y H:i') }}</td>
+                        <td class="text-end">
+                          <form action="{{ route('admin.consultas.toggle', $consulta->id) }}" method="POST" class="d-inline">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-sm {{ $consulta->estado === 'pendiente' ? 'btn-success' : 'btn-warning' }} rounded-pill px-2.5 py-1 text-white" style="font-size: 0.75rem; font-weight: 500;">
+                              {{ $consulta->estado === 'pendiente' ? 'Resolver' : 'Reabrir' }}
+                            </button>
+                          </form>
+                        </td>
+                      </tr>
+                      @empty
+                      <tr>
+                        <td colspan="7" class="text-center py-4 text-muted">No hay consultas registradas en este momento.</td>
+                      </tr>
                       @endforelse
                     </tbody>
                   </table>
@@ -475,6 +667,16 @@
       document.getElementById('editar-preview-container').classList.add('d-none');
     });
   }
+
+  // Sincronizar la pestaña activa con el parámetro 'tab' de la URL
+  const tabButtons = document.querySelectorAll('#adminTabs button[data-bs-toggle="pill"]');
+  tabButtons.forEach(button => {
+    button.addEventListener('shown.bs.tab', function (event) {
+      const targetId = event.target.getAttribute('data-bs-target').replace('#panel-', '');
+      const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?tab=' + targetId;
+      window.history.replaceState({ path: newUrl }, '', newUrl);
+    });
+  });
 </script>
 
 @endsection
