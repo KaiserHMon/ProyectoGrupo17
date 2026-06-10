@@ -30,7 +30,6 @@ class AdminController extends Controller
         $ticketPromedio = $ventasRealizadas > 0 ? $ingresosTotales / $ventasRealizadas : 0;
         $productosStockCritico = Producto::where('stock', '<=', 10)->count();
         $consultasPendientes = Consulta::where('estado', 'pendiente')->count();
-
         return view('backend.admin.dashboard', compact(
             'productos',
             'ventas',
