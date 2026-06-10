@@ -14,8 +14,8 @@ class UsuariosSeeder extends Seeder
     public function run(): void
     {
         $usuarios = [
-            ['nombre' => 'Benjamin', 'email' => 'benjaharvey@mail.com', 'password' => '12345', 'rol_id' => 1],
-            ['nombre' => 'Cliente Prueba', 'email' => 'cliente@prueba.com', 'password' => 'cliente123', 'rol_id' => 2],
+            ['nombre' => 'admin', 'email' => 'admin@prueba.com', 'password' => 'admin12345', 'rol_id' => 1],
+            ['nombre' => 'cliente', 'email' => 'cliente@prueba.com', 'password' => 'cliente12345', 'rol_id' => 2],
         ];
 
         foreach ($usuarios as $usuario) {

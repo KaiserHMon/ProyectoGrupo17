@@ -62,7 +62,7 @@ Route::get('/consultas', function() {
     return view('consultas');
 });
 
-Route::post('/consultas', [ConsultaController::class, 'procesar']);
+Route::post('/consultas', [ConsultaController::class, 'guardar'])->name('consultas.guardar');
 
 
 
@@ -97,5 +97,8 @@ Route::middleware(['auth', 'rol:admin'])->group(function() {
     # Gestión de usuarios
     Route::patch('/admin/usuarios/{usuario}/rol', [UsuarioController::class, 'updateRol'])->name('admin.usuarios.updateRol');
     Route::delete('/admin/usuarios/{usuario}', [UsuarioController::class, 'destroy'])->name('admin.usuarios.destroy');
+
+    # Gestión de consultas
+    Route::patch('/admin/consultas/{id}/toggle', [ConsultaController::class, 'toggleStatus'])->name('admin.consultas.toggle');
 
 });

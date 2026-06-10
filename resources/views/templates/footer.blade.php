@@ -58,7 +58,7 @@
         </div>
 
         <div class="border-top border-secondary-subtle pt-3 mt-4">
-            <p class="text-center text-body-secondary mb-0">© 2026 Maie</p>
+            <p class="text-center text-body-secondary mb-0">© 2026 Maie - Dulces Artesanales</p>
         </div>
     </div>
 </footer>
