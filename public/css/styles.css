@@ -330,3 +330,125 @@ p {
     pointer-events: none;
 }
 
+/* ========================================
+   METRIC CARDS
+   ======================================== */
+.metric-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid rgba(98, 43, 22, 0.08) !important;
+}
+.metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(98, 43, 22, 0.08) !important;
+}
+
+/* ========================================
+   CONTACT CARDS
+   ======================================== */
+.contact-card {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(98, 43, 22, 0.05) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(98, 43, 22, 0.15) !important;
+    border-color: rgba(98, 43, 22, 0.2) !important;
+}
+.contact-card:hover .icon-wrapper {
+    background-color: #622b16 !important;
+    color: #FCF9F4 !important;
+    border-color: #622b16 !important;
+}
+.contact-card h5 {
+    color: #622b16;
+    font-size: 1.15rem;
+}
+.contact-link {
+    color: #9A4600 !important;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+}
+.contact-card:hover .contact-link {
+    color: #622b16 !important;
+}
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #FCF9F4 !important;
+    color: #622b16 !important;
+    border: 1px solid rgba(98, 43, 22, 0.1) !important;
+    transition: all 0.3s ease;
+}
+
+/* ========================================
+   UTILITIES & REUSABLE COMPONENTS
+   ======================================== */
+.bg-light-maie {
+    background-color: #F6F3EE !important;
+}
+.bg-light-beige {
+    background-color: #FCF9F4 !important;
+}
+.section-dashboard {
+    background-color: #FCF9F4 !important;
+    min-height: 80vh;
+}
+.card-maie {
+    border-radius: 15px !important;
+    border: 1px solid rgba(98, 43, 22, 0.1) !important;
+    background-color: #ffffff !important;
+}
+.card-maie-sticky {
+    border-radius: 15px !important;
+    border: 1px solid rgba(98, 43, 22, 0.1) !important;
+    background-color: #ffffff !important;
+    top: 20px;
+}
+.dashboard-sidebar-title {
+    color: #622b16;
+    font-family: 'Noto Serif', serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+.logo-local {
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+.hero-carousel-img {
+    height: 450px;
+    object-fit: cover;
+}
+.about-carousel-img {
+    max-height: 600px;
+    object-fit: cover;
+    object-position: center;
+}
+.carousel-caption-grad {
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.6)) !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 20px !important;
+}
+.text-shadow-dark {
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8) !important;
+}
+.logo-auth {
+    height: 60px;
+}
+.footer-custom h5 {
+    color: #622b16 !important;
+}
+.footer-custom a {
+    color: #622b16 !important;
+    transition: opacity 0.3s ease;
+}
+.footer-custom a:hover {
+    opacity: 0.8;
+}
+
+

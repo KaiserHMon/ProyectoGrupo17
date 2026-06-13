@@ -15,13 +15,13 @@
             <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner shadow-lg rounded-4">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="\images\productos\maie-91.jpg" alt="First slide" style="height: 450px; object-fit: cover;">
+                        <img class="d-block w-100 hero-carousel-img" src="{{ asset('images/productos/maie-91.jpg') }}" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="\images\productos\maie-100.jpg" alt="Second slide" style="height: 450px; object-fit: cover;">
+                        <img class="d-block w-100 hero-carousel-img" src="{{ asset('images/productos/maie-100.jpg') }}" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="\images\productos\maie-115.jpeg" alt="Third slide" style="height: 450px; object-fit: cover;">
+                        <img class="d-block w-100 hero-carousel-img" src="{{ asset('images/productos/maie-115.jpeg') }}" alt="Third slide">
                     </div>
                 </div>
             </div>

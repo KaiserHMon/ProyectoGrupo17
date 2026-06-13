@@ -2,19 +2,8 @@
 
 @section('contenido')
 
-<section class="py-5" style="background-color: #FCF9F4; min-height: 80vh;">
+<section class="py-5 section-dashboard">
   <div class="container">
-
-    <style>
-      .metric-card {
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
-        border: 1px solid rgba(98, 43, 22, 0.08) !important;
-      }
-      .metric-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 24px rgba(98, 43, 22, 0.08) !important;
-      }
-    </style>
 
     <div class="mb-4 text-center">
       <h1 class="display-6 fw-bold">Panel de <span class="fst-italic text-maie">Administración</span></h1>
@@ -25,9 +14,9 @@
 
       {{-- Sidebar --}}
       <div class="col-12 col-md-3">
-        <div class="card shadow-sm rounded-4 sticky-md-top" style="border: 1px solid rgba(98,43,22,0.1); background:#fff; top: 20px;">
+        <div class="card shadow-sm rounded-4 sticky-md-top card-maie-sticky">
           <div class="card-body p-3">
-            <h6 class="fw-bold mb-3" style="color:#622b16; font-family:'Noto Serif',serif; font-size:0.85rem; text-transform:uppercase; letter-spacing:.05em;">Acciones</h6>
+            <h6 class="fw-bold mb-3 dashboard-sidebar-title">Acciones</h6>
             <div class="nav flex-column nav-pills maie-auth-nav gap-1" id="adminTabs" role="tablist">
               <button class="nav-link {{ ($activeTab ?? 'metricas') === 'metricas' ? 'active' : '' }} text-start" data-bs-toggle="pill" data-bs-target="#panel-metricas" type="button" role="tab">
                 Métricas
@@ -55,7 +44,7 @@
         {{-- Filtros de Fecha --}}
         <form action="{{ url('/admin') }}" method="GET" class="mb-4">
           <input type="hidden" name="tab" id="filter-tab-input" value="{{ $activeTab ?? 'metricas' }}">
-          <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+          <div class="card shadow-sm rounded-4 card-maie">
             <div class="card-body p-3">
               <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 px-1">
                 <span class="fw-semibold text-maie mb-1" style="font-size: 0.9rem; font-family: 'Noto Serif', serif;">
@@ -69,19 +58,19 @@
               </div>
               <div class="row align-items-end g-2">
                 <div class="col-12 col-sm-4">
+                  <label for="fecha_inicio" class="form-label text-maie fw-medium mb-1 px-1" style="font-size: 0.75rem;">Fecha inicial</label>
                   <input type="date" id="fecha_inicio" name="fecha_inicio" class="maie-input py-1.5 px-3" style="font-size: 0.85rem;" value="{{ request('fecha_inicio') }}" placeholder="Desde">
-                  <div class="form-text text-muted m-0 px-1" style="font-size: 0.72rem;">Fecha inicial</div>
                 </div>
                 <div class="col-12 col-sm-4">
+                  <label for="fecha_fin" class="form-label text-maie fw-medium mb-1 px-1" style="font-size: 0.75rem;">Fecha final</label>
                   <input type="date" id="fecha_fin" name="fecha_fin" class="maie-input py-1.5 px-3" style="font-size: 0.85rem;" value="{{ request('fecha_fin') }}" placeholder="Hasta">
-                  <div class="form-text text-muted m-0 px-1" style="font-size: 0.72rem;">Fecha final</div>
                 </div>
-                <div class="col-12 col-sm-4 d-flex gap-2">
-                  <button type="submit" class="btn btn-custom flex-grow-1 py-1.5 rounded-pill fw-bold" style="font-size: 0.85rem; height: 38px;">
+                <div class="col-12 col-sm-4 text-center">
+                  <button type="submit" class="btn btn-custom py-1.5 fw-bold" style="font-size: 0.85rem; height: 38px;">
                     <i class="bi bi-funnel-fill me-1"></i> Filtrar
                   </button>
                   @if(request('fecha_inicio') || request('fecha_fin'))
-                    <a href="/admin?tab={{ $activeTab ?? 'metricas' }}" id="btn-reset-filters" class="btn btn-outline-secondary py-1.5 px-3 rounded-pill fw-bold d-flex align-items-center justify-content-center" style="font-size: 0.85rem; height: 38px;" title="Limpiar filtros">
+                    <a href="/admin?tab={{ $activeTab ?? 'metricas' }}" id="btn-reset-filters" class="btn btn-outline-secondary py-1.5 px-3 rounded-pill fw-bold d-inline-flex align-items-center justify-content-center" style="font-size: 0.85rem; height: 38px;" title="Limpiar filtros">
                       <i class="bi bi-trash-fill"></i>
                     </a>
                   @endif
@@ -95,10 +84,10 @@
 
           {{-- Panel de Métricas --}}
           <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'metricas' ? 'show active' : '' }}" id="panel-metricas" role="tabpanel">
-            <div class="card shadow-sm rounded-4 mb-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card shadow-sm rounded-4 mb-4 card-maie">
               <div class="card-body p-4">
                 <div class="mb-4">
-                  <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Métricas de Rendimiento</h2>
+                  <h2 class="h5 fw-bold mb-1">Métricas de Rendimiento</h2>
                   <p class="text-muted mb-0" style="font-size:.9rem;">Información general sobre el estado de la tienda y las operaciones.</p>
                 </div>
 
@@ -223,11 +212,11 @@
                 </div>
             @endif
 
-            <div class="card shadow-sm rounded-4 mb-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card shadow-sm rounded-4 mb-4 card-maie">
               <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-4">
                     <div>
-                        <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Listado de Productos</h2>
+                        <h2 class="h5 fw-bold mb-1">Listado de Productos</h2>
                         <p class="text-muted mb-0" style="font-size:.9rem;">Gestioná los productos, su información y stock.</p>
                     </div>
                     <button class="btn btn-custom px-4 py-2 rounded-pill fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNuevoProducto" aria-expanded="false" aria-controls="collapseNuevoProducto">
@@ -313,7 +302,9 @@
                           <td class="fw-bold">{{ $producto->nombre }}</td>
                           <td class="fw-semibold">$ {{ number_format($producto->precio, 2, ',', '.') }}</td>
                           <td>
-                            @if($producto->stock <= 10)
+                            @if($producto->stock == 0)
+                                <span class="badge bg-secondary px-2.5 py-1.5 rounded-pill">Sin Stock</span>
+                            @elseif($producto->stock <= 10)
                                 <span class="badge bg-danger px-2.5 py-1.5 rounded-pill">Bajo Stock: {{ $producto->stock }}</span>
                             @else
                                 <span class="badge bg-success px-2.5 py-1.5 rounded-pill">Disponible: {{ $producto->stock }}</span>
@@ -356,9 +347,9 @@
 
           {{-- Usuarios Registrados --}}
           <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'usuarios' ? 'show active' : '' }}" id="panel-usuarios" role="tabpanel">
-            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card shadow-sm rounded-4 card-maie">
               <div class="card-body p-4 p-md-5">
-                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Usuarios Registrados</h2>
+                <h2 class="h5 fw-bold mb-1">Usuarios Registrados</h2>
                 <p class="text-muted mb-4" style="font-size:.9rem;">Listado de todos los usuarios que se han registrado en la plataforma.</p>
 
                 @if(session('success_usuarios'))
@@ -463,9 +454,9 @@
 
           {{-- Ventas Realizadas --}}
           <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'ventas' ? 'show active' : '' }}" id="panel-ventas" role="tabpanel">
-            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card shadow-sm rounded-4 card-maie">
               <div class="card-body p-4 p-md-5">
-                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Ventas Realizadas</h2>
+                <h2 class="h5 fw-bold mb-1">Ventas Realizadas</h2>
                 <p class="text-muted mb-4" style="font-size:.9rem;">Historial de todas las ventas completadas en la tienda.</p>
 
                 <div class="table-responsive">
@@ -522,9 +513,9 @@
 
           {{-- Consultas Recibidas --}}
           <div class="tab-pane fade {{ ($activeTab ?? 'metricas') === 'consultas' ? 'show active' : '' }}" id="panel-consultas" role="tabpanel">
-            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card shadow-sm rounded-4 card-maie">
               <div class="card-body p-4 p-md-5">
-                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Consultas Recibidas</h2>
+                <h2 class="h5 fw-bold mb-1">Consultas Recibidas</h2>
                 <p class="text-muted mb-4" style="font-size:.9rem;">Listado de consultas de contacto enviadas por los usuarios.</p>
 
                 @if(session('success_consultas'))
@@ -655,35 +646,38 @@
 </div>
 
 <script>
-  // Preview imagen nuevo producto
+  // Controla la vista previa de la imagen seleccionada al crear un nuevo producto
   document.getElementById('nuevo-imagen')?.addEventListener('change', function () {
     const file = this.files[0];
-    if (!file) return;
+    if (!file) return; // Si no hay archivo, finaliza la ejecución
     const reader = new FileReader();
+    // Cuando el archivo se lee correctamente, se actualiza la fuente de la imagen de vista previa
     reader.onload = function (e) {
       document.getElementById('imagen-preview').src = e.target.result;
-      document.getElementById('preview-container').classList.remove('d-none');
+      document.getElementById('preview-container').classList.remove('d-none'); // Muestra la vista previa
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); // Lee el archivo como URL de datos
   });
 
-  // Preview imagen editar producto
+  // Controla la vista previa de la imagen seleccionada al editar un producto existente
   document.getElementById('editar-imagen')?.addEventListener('change', function () {
     const file = this.files[0];
-    if (!file) return;
+    if (!file) return; // Si no hay archivo, finaliza la ejecución
     const reader = new FileReader();
+    // Cuando el archivo se lee correctamente, se actualiza la fuente en el modal de edición
     reader.onload = function (e) {
       document.getElementById('editar-imagen-preview').src = e.target.result;
-      document.getElementById('editar-preview-container').classList.remove('d-none');
+      document.getElementById('editar-preview-container').classList.remove('d-none'); // Muestra la vista previa
     };
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file); // Lee el archivo como URL de datos
   });
 
-  // Poblar modal editar producto
+  // Rellena el modal de edición con los datos del producto seleccionado para modificar
   const modalEditar = document.getElementById('modalEditar');
   if (modalEditar) {
     modalEditar.addEventListener('show.bs.modal', function (event) {
-      const button = event.relatedTarget;
+      const button = event.relatedTarget; // Botón que disparó el modal
+      // Se extraen los datos del producto desde los atributos 'data-*' del botón
       const id = button.getAttribute('data-id');
       const nombre = button.getAttribute('data-nombre');
       const descripcion = button.getAttribute('data-descripcion');
@@ -691,45 +685,46 @@
       const stock = button.getAttribute('data-stock');
       const imagen = button.getAttribute('data-imagen');
 
-      // Configurar acción del formulario
+      // Se configura de forma dinámica la acción (ruta) del formulario de edición
       const form = document.getElementById('formEditarProducto');
       form.action = `/admin/productos/${id}`;
 
-      // Rellenar campos
+      // Se cargan los valores en los campos correspondientes del formulario de edición
       document.getElementById('editar-nombre').value = nombre;
       document.getElementById('editar-descripcion').value = descripcion;
       document.getElementById('editar-precio').value = precio;
       document.getElementById('editar-stock').value = stock;
       document.getElementById('editar-imagen-actual').src = imagen;
 
-      // Resetear vista previa
+      // Resetea el input de tipo file y oculta la vista previa de nueva imagen
       document.getElementById('editar-imagen').value = '';
       document.getElementById('editar-preview-container').classList.add('d-none');
     });
   }
 
-  // Sincronizar la pestaña activa con el parámetro 'tab' de la URL sin perder otros parámetros como fechas
+  // Sincroniza la pestaña activa de administración con el parámetro 'tab' de la URL
+  // Esto permite mantener al usuario en la pestaña correcta al filtrar por fechas
   const tabButtons = document.querySelectorAll('#adminTabs button[data-bs-toggle="pill"]');
   tabButtons.forEach(button => {
     button.addEventListener('shown.bs.tab', function (event) {
       const targetId = event.target.getAttribute('data-bs-target').replace('#panel-', '');
-      
-      // Actualizar el input hidden del formulario de filtros
+
+      // Actualiza el input hidden del formulario para conservar el estado de la pestaña
       const tabInput = document.getElementById('filter-tab-input');
       if (tabInput) {
         tabInput.value = targetId;
       }
-      
-      // Actualizar el link de "Limpiar filtros" para mantener la pestaña actual activa al restablecer
+
+      // Modifica el enlace de 'Limpiar filtros' para que apunte a la pestaña activa
       const resetLink = document.getElementById('btn-reset-filters');
       if (resetLink) {
         resetLink.href = `/admin?tab=${targetId}`;
       }
 
-      // Mantener los parámetros de fecha en la URL al cambiar de pestaña
+      // Actualiza los parámetros de la URL sin provocar una recarga de página
       const urlParams = new URLSearchParams(window.location.search);
       urlParams.set('tab', targetId);
-      
+
       const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + urlParams.toString();
       window.history.replaceState({ path: newUrl }, '', newUrl);
     });

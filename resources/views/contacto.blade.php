@@ -39,11 +39,11 @@
                 
                 <!-- Tarjeta: Ubicación -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card" style="background-color: #ffffff; border: 1px solid rgba(98, 43, 22, 0.05) !important;">
-                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%; background-color: #FCF9F4; color: #622b16; border: 1px solid rgba(98, 43, 22, 0.1); transition: all 0.3s ease;">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card">
+                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center">
                             <i class="bi bi-geo-alt-fill fs-3"></i>
                         </div>
-                        <h5 class="fw-bold mb-2" style="color: #622b16; font-size: 1.15rem;">Nuestra Tienda</h5>
+                        <h5 class="fw-bold mb-2">Nuestra Tienda</h5>
                         <p class="text-muted small mb-3">Vení a visitarnos y conocé todos nuestros productos en persona.</p>
                         <a href="https://maps.google.com/?q=Rivadavia 1189, Corrientes" target="_blank" class="fw-bold text-decoration-none contact-link mt-auto" style="color: #9A4600; font-size: 0.95rem;">
                             Rivadavia 1189,<br>Corrientes
@@ -53,11 +53,11 @@
 
                 <!-- Tarjeta: WhatsApp -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card" style="background-color: #ffffff; border: 1px solid rgba(98, 43, 22, 0.05) !important;">
-                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%; background-color: #FCF9F4; color: #622b16; border: 1px solid rgba(98, 43, 22, 0.1); transition: all 0.3s ease;">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card">
+                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center">
                             <i class="bi bi-whatsapp fs-3"></i>
                         </div>
-                        <h5 class="fw-bold mb-2" style="color: #622b16; font-size: 1.15rem;">WhatsApp</h5>
+                        <h5 class="fw-bold mb-2">WhatsApp</h5>
                         <p class="text-muted small mb-3">Escribinos para hacer consultas rápidas o coordinar pedidos especiales.</p>
                         <a href="https://wa.me/5493794004039" target="_blank" class="fw-bold text-decoration-none contact-link mt-auto" style="color: #9A4600; font-size: 0.95rem;">
                             +54 9 3794 00-4039
@@ -67,11 +67,11 @@
 
                 <!-- Tarjeta: Email -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card" style="background-color: #ffffff; border: 1px solid rgba(98, 43, 22, 0.05) !important;">
-                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%; background-color: #FCF9F4; color: #622b16; border: 1px solid rgba(98, 43, 22, 0.1); transition: all 0.3s ease;">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card">
+                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center">
                             <i class="bi bi-envelope-fill fs-3"></i>
                         </div>
-                        <h5 class="fw-bold mb-2" style="color: #622b16; font-size: 1.15rem;">Email</h5>
+                        <h5 class="fw-bold mb-2">Email</h5>
                         <p class="text-muted small mb-3">Mandanos tus dudas, sugerencias o propuestas por correo electrónico.</p>
                         <a href="mailto:maie.dulces@gmail.com" class="fw-bold text-decoration-none contact-link text-break mt-auto" style="color: #9A4600; font-size: 0.95rem;">
                             maie.dulces@gmail.com
@@ -81,11 +81,11 @@
 
                 <!-- Tarjeta: Instagram -->
                 <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card" style="background-color: #ffffff; border: 1px solid rgba(98, 43, 22, 0.05) !important;">
-                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; border-radius: 50%; background-color: #FCF9F4; color: #622b16; border: 1px solid rgba(98, 43, 22, 0.1); transition: all 0.3s ease;">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card">
+                        <div class="icon-wrapper mx-auto mb-3 d-flex align-items-center justify-content-center">
                             <i class="bi bi-instagram fs-3"></i>
                         </div>
-                        <h5 class="fw-bold mb-2" style="color: #622b16; font-size: 1.15rem;">Instagram</h5>
+                        <h5 class="fw-bold mb-2">Instagram</h5>
                         <p class="text-muted small mb-3">Seguinos en nuestras redes para ver novedades y sorteos diarios.</p>
                         <a href="https://www.instagram.com/maie.alfajores/" target="_blank" class="fw-bold text-decoration-none contact-link mt-auto" style="color: #9A4600; font-size: 0.95rem;">
                             @maie.alfajores
@@ -98,25 +98,4 @@
     </div>
 </div>
 
-<style>
-    .contact-card {
-        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    }
-    .contact-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 12px 25px rgba(98, 43, 22, 0.15) !important;
-        border-color: rgba(98, 43, 22, 0.2) !important;
-    }
-    .contact-card:hover .icon-wrapper {
-        background-color: #622b16 !important;
-        color: #FCF9F4 !important;
-        border-color: #622b16 !important;
-    }
-    .contact-link {
-        transition: color 0.3s ease;
-    }
-    .contact-card:hover .contact-link {
-        color: #622b16 !important;
-    }
-</style>
 @endsection

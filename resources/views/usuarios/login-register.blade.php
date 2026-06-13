@@ -4,17 +4,17 @@
 @section('contenido')
 
 {{-- Sección principal: Contenedor de los formularios de login y registro --}}
-<section class="py-5" style="background-color: #FCF9F4; min-height: 80vh;">
+<section class="py-5 section-dashboard">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
 
-        <div class="card shadow-sm" style="border-radius: 15px; border: 1px solid rgba(98, 43, 22, 0.1); background-color: #fff;">
+        <div class="card shadow-sm card-maie">
           <div class="card-body p-4 p-md-5">
 
             <!-- Logo centrado -->
             <div class="text-center mb-4">
-              <img src="{{ asset('images/logo/LOGO_MAIE_navbar.png') }}" alt="Maie Logo" style="height: 60px;">
+              <img src="{{ asset('images/logo/LOGO_MAIE_navbar.png') }}" alt="Maie Logo" class="logo-auth">
             </div>
 
             @php $showRegister = $errors->register->any(); @endphp

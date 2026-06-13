@@ -1,9 +1,9 @@
-<footer class="py-3 my-4">
+<footer class="py-3 my-4 footer-custom">
     <div class="container">
         <div class="row text-center text-md-start">
             <!-- Columna de Contacto -->
             <div class="col-6 col-md-4 mb-4 mb-md-0 text-start text-md-start">
-                <h5 class="fw-bold mb-3" style="color: #622b16;">Contacto</h5>
+                <h5 class="fw-bold mb-3">Contacto</h5>
                 <ul class="list-unstyled text-body-secondary small">
                     <li class="mb-2 d-flex align-items-start">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#622b16" class="bi bi-geo-alt-fill me-2 mt-1 flex-shrink-0" viewBox="0 0 16 16">
@@ -28,7 +28,7 @@
 
             <!-- Columna de Enlaces -->
             <div class="col-6 col-md-4 mb-4 mb-md-0 d-flex flex-column align-items-center align-items-md-center">
-                <h5 class="fw-bold mb-3" style="color: #622b16;">Enlaces Útiles</h5>
+                <h5 class="fw-bold mb-3">Enlaces Útiles</h5>
                 <ul class="nav flex-column align-items-center align-items-md-center small">
                     <li class="nav-item mb-2">
                         <a href="/contacto" class="nav-link p-0 text-body-secondary">Contacto</a>
@@ -41,7 +41,7 @@
 
             <!-- Columna de Redes Sociales -->
             <div class="col-12 col-md-4 d-flex flex-column align-items-center align-items-md-end">
-                <h5 class="fw-bold mb-3" style="color: #622b16;">Seguinos</h5>
+                <h5 class="fw-bold mb-3">Seguinos</h5>
                 <div class="d-flex gap-3">
                     <a href="https://www.instagram.com/maie.alfajores/" target="_blank" style="color: #622b16;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
