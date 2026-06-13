@@ -12,13 +12,13 @@
 <div id="carouselExampleFade" class="carousel slide carousel-fade shadow-lg rounded">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="/images/productos/maie-1.jpg" class="d-block w-100 img-fluid rounded shadow" style="max-height: 600px; object-fit: cover; object-position: center;" alt="...">
+      <img src="/images/productos/maie-1.jpg" class="d-block w-100 img-fluid rounded shadow about-carousel-img" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="/images/productos/maie-22.jpeg" class="d-block w-100 img-fluid rounded shadow" style="max-height: 600px; object-fit: cover; object-position: center;" alt="...">
+      <img src="/images/productos/maie-22.jpeg" class="d-block w-100 img-fluid rounded shadow about-carousel-img" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="/images/productos/maie-16.jpg" class="d-block w-100 img-fluid rounded shadow" style="max-height: 600px; object-fit: cover; object-position: center;" alt="...">
+      <img src="/images/productos/maie-16.jpg" class="d-block w-100 img-fluid rounded shadow about-carousel-img" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -33,7 +33,7 @@
 </div>
 </section>
 
-<section class="py-5" style="background-color: #F6F3EE;">
+<section class="py-5 bg-light-maie">
   <div class="container">
     <div class="row align-items-center g-4">
       <div class="col-md-6">
@@ -48,7 +48,7 @@
   </div>
 </section>
 
-<section class="py-5" style="background-color: #FCF9F4;">
+<section class="py-5 bg-light-beige">
   <div class="container text-center">
     <h2 class="mb-5 fw-bold">Quienes estan detras de Maie</h2>
     <p class= "mb-5 text-center lead">Ellos son los responsables de que puedas disfrutar de los mejores dulces artesanales en Corrientes</p>
@@ -58,33 +58,33 @@
 
           <div class="carousel-item active">
             <img src="/images/personas_maie/elisa_ia_imgstock.png" class="d-block w-100 img-fluid rounded" alt="Elisa">
-            <div class="carousel-caption d-none d-md-block" style="background: linear-gradient(transparent, rgba(0,0,0,0.6)); bottom: 0; left: 0; right: 0; padding: 20px;">
-              <h5 class="text-white fw-bold" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Elisa</h5>
-              <p class="text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Es la community manager de la familia, se encarga de la publicidad en las redes sociales</p>
+            <div class="carousel-caption d-none d-md-block carousel-caption-grad">
+              <h5 class="text-white fw-bold text-shadow-dark">Elisa</h5>
+              <p class="text-white text-shadow-dark">Es la community manager de la familia, se encarga de la publicidad en las redes sociales</p>
             </div>
           </div>
 
           <div class="carousel-item">
             <img src="/images/personas_maie/wini_imgstock.png" class="d-block w-100 img-fluid rounded" alt="Wini">
-            <div class="carousel-caption d-none d-md-block" style="background: linear-gradient(transparent, rgba(0,0,0,0.6)); bottom: 0; left: 0; right: 0; padding: 20px;">
-              <h5 class="text-white fw-bold" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Wini</h5>
-              <p class="text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Se encarga de coordinar con nuestros diversos puntos de venta la entrega de nuestros productos</p>
+            <div class="carousel-caption d-none d-md-block carousel-caption-grad">
+              <h5 class="text-white fw-bold text-shadow-dark">Wini</h5>
+              <p class="text-white text-shadow-dark">Se encarga de coordinar con nuestros diversos puntos de venta la entrega de nuestros productos</p>
             </div>
           </div>
 
           <div class="carousel-item">
             <img src="/images/personas_maie/anaedwin_ia_imgstock.png" class="d-block w-100 img-fluid rounded" alt="Ana y Edwin">
-            <div class="carousel-caption d-none d-md-block" style="background: linear-gradient(transparent, rgba(0,0,0,0.6)); bottom: 0; left: 0; right: 0; padding: 20px;">
-              <h5 class="text-white fw-bold" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Ana y Edwin</h5>
-              <p class="text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Se encargan de preparar las cajas para la entrega a puntos de venta y particulares, ademas de procurar los ingredientes necesarios para la elaboración de nuestros productos</p>
+            <div class="carousel-caption d-none d-md-block carousel-caption-grad">
+              <h5 class="text-white fw-bold text-shadow-dark">Ana y Edwin</h5>
+              <p class="text-white text-shadow-dark">Se encargan de preparar las cajas para la entrega a puntos de venta and particulares, ademas de procurar los ingredientes necesarios para la elaboración de nuestros productos</p>
             </div>
           </div>
 
           <div class="carousel-item">
             <img src="/images/personas_maie/rosa_rosana_imgstock.png" class="d-block w-100 img-fluid rounded" alt="Rosana y Rosa">
-            <div class="carousel-caption d-none d-md-block" style="background: linear-gradient(transparent, rgba(0,0,0,0.6)); bottom: 0; left: 0; right: 0; padding: 20px;">
-              <h5 class="text-white fw-bold" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Rosana y Rosa</h5>
-              <p class="text-white" style="text-shadow: 1px 1px 4px rgba(0,0,0,0.8);">Se encargan de elaborar nuestros productos. Gracias a su esfuerzo es que toda la comunidad de Maie puede disfrutar de nuestros productos con la mejor calidad posible</p>
+            <div class="carousel-caption d-none d-md-block carousel-caption-grad">
+              <h5 class="text-white fw-bold text-shadow-dark">Rosana y Rosa</h5>
+              <p class="text-white text-shadow-dark">Se encargan de elaborar nuestros productos. Gracias a su esfuerzo es que toda la comunidad de Maie puede disfrutar de nuestros productos con la mejor calidad posible</p>
             </div>
           </div>
         </div>

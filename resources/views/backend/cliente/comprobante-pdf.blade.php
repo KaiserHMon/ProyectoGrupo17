@@ -116,7 +116,7 @@
             text-align: right;
         }
         .footer-note {
-            margin-top: 150px;
+            margin-top: 40px;
             text-align: center;
             font-size: 14px;
             color: #622b16;
@@ -192,18 +192,13 @@
                     <td class="text-right">${{ number_format($subtotal, 2, ',', '.') }}</td>
                 </tr>
             @endforeach
+            <!-- Fila de Total -->
+            <tr style="font-weight: bold; background-color: #fdfaf7;">
+                <td colspan="3" class="text-right" style="border-top: 2px solid #622b16; font-size: 13px; padding: 10px;">Total de la compra:</td>
+                <td class="text-right" style="border-top: 2px solid #622b16; color: #9A4600; font-size: 14px; padding: 10px;">${{ number_format($venta->total, 2, ',', '.') }}</td>
+            </tr>
         </tbody>
     </table>
-
-    <!-- Totales -->
-    <div style="width: 100%; overflow: hidden;">
-        <table class="total-box">
-            <tr>
-                <td class="total-label">Total de la compra:</td>
-                <td class="total-amount">${{ number_format($venta->total, 2, ',', '.') }}</td>
-            </tr>
-        </table>
-    </div>
 
     <!-- Pie de página -->
     <div class="footer-note">

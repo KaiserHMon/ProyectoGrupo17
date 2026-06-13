@@ -2,7 +2,7 @@
 
 @section('contenido')
 
-<section class="py-5" style="background-color: #FCF9F4; min-height: 80vh;">
+<section class="py-5 section-dashboard">
   <div class="container">
 
     <div class="mb-5 text-center">
@@ -14,9 +14,9 @@
 
       {{-- Sidebar --}}
       <div class="col-12 col-md-3">
-        <div class="card shadow-sm rounded-4 sticky-md-top" style="border: 1px solid rgba(98,43,22,0.1); background:#fff; top: 20px;">
+        <div class="card shadow-sm rounded-4 sticky-md-top card-maie-sticky">
           <div class="card-body p-3">
-            <h6 class="fw-bold mb-3" style="color:#622b16; font-family:'Noto Serif',serif; font-size:0.85rem; text-transform:uppercase; letter-spacing:.05em;">Mi cuenta</h6>
+            <h6 class="fw-bold mb-3 dashboard-sidebar-title">Mi cuenta</h6>
             <div class="nav flex-column nav-pills maie-auth-nav gap-1" id="clienteTabs" role="tablist">
               <button class="nav-link active text-start" data-bs-toggle="pill" data-bs-target="#panel-perfil" type="button" role="tab">
                 Mis datos
@@ -35,9 +35,9 @@
 
           {{-- Panel: Mis datos --}}
           <div class="tab-pane fade show active" id="panel-perfil" role="tabpanel">
-            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card shadow-sm rounded-4 card-maie">
               <div class="card-body p-4 p-md-5">
-                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Mis datos</h2>
+                <h2 class="h5 fw-bold mb-1">Mis datos</h2>
                 <p class="text-muted mb-4" style="font-size:.9rem;">Tu información personal registrada en la plataforma.</p>
 
                 <div class="row g-3">
@@ -69,9 +69,9 @@
 
           {{-- Panel: Mis compras --}}
           <div class="tab-pane fade" id="panel-compras" role="tabpanel">
-            <div class="card shadow-sm rounded-4" style="border: 1px solid rgba(98,43,22,0.1); background:#fff;">
+            <div class="card shadow-sm rounded-4 card-maie">
               <div class="card-body p-4 p-md-5">
-                <h2 class="h5 fw-bold mb-1" style="color:#622b16;">Mis compras</h2>
+                <h2 class="h5 fw-bold mb-1">Mis compras</h2>
                 <p class="text-muted mb-4" style="font-size:.9rem;">Historial de todas tus compras realizadas.</p>
 
                 <div class="table-responsive">
