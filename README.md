@@ -45,12 +45,12 @@ composer install
 
 **Paso 3 — Crear el archivo de entorno**
 ```bash
-cp .env.copy .env
+cp .env.example .env
 ```
 
 **Paso 3.1 — Crear el archivo de entorno - SI EL COMANDO ANTERIOR NO FUNCIONA**
 ```bash
-copy .env.copy .env
+copy .env.example .env
 ```
 
 **Paso 4 — Copiar la base de datos SQLite al proyecto**
@@ -68,6 +68,11 @@ DB_CONNECTION=sqlite
 **Paso 7 - Ejecutar migraciones**
 ```bash
 php artisan migrate
+```
+
+**Paso 8 - Crear el enlace simbólico para archivos públicos**
+```bash
+php artisan storage:link
 ```
 
 **PARA PROBAR LOS 2 TIPOS DE USUARIOS**
