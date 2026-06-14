@@ -45,12 +45,12 @@ composer install
 
 **Paso 3 — Crear el archivo de entorno**
 ```bash
-cp .env.example .env
+cp .env.copy .env
 ```
 
 **Paso 3.1 — Crear el archivo de entorno - SI EL COMANDO ANTERIOR NO FUNCIONA**
 ```bash
-copy .env.example .env
+copy .env.copy .env
 ```
 
 **Paso 4 — Copiar la base de datos SQLite al proyecto**
