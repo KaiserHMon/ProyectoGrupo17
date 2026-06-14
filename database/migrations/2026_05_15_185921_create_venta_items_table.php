@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('venta_cabecera_id')
                     ->constrained('ventas_cabecera')
-                    ->cascadeOnDelete();
+                    ->cascadeOnDelete(); // Si se cancela la venta cabecera, se eliminan todos sus items
             $table->foreignId('producto_id')
                     ->constrained('productos');
             $table->integer('cantidad')->default(1);
+            // Se guarda el precio al momento de agregar al carrito, no el precio actual del producto
             $table->decimal('precio_unitario', 10, 2);
             $table->timestamps();
             $table->softDeletes();

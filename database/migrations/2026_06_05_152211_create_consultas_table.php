@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('consultas', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('email');
-            $table->string('mensaje');
+            $table->string('nombre'); // Nombre del visitante que envía la consulta
+            $table->string('email'); // Email de contacto para responder
+            $table->string('mensaje'); // Contenido de la consulta
+            // El admin cambia el estado a 'resuelto' desde el panel una vez que responde
             $table->enum('estado', ['pendiente', 'resuelto'])
                     ->default('pendiente');
             $table->timestamps();

@@ -1,3 +1,4 @@
+{{-- Formulario público de consultas: cualquier visitante puede enviar una duda sin necesidad de estar registrado --}}
 @extends('layout')
 
 @section('contenido')
@@ -8,6 +9,7 @@
     <p class="text-center mt-2">Nos pondremos en contacto lo antes posible</p>
 <div class="card mt-4 shadow-lg rounded">
     <div class="card-body">
+         {{-- Confirmación de envío exitoso --}}
          @if(session('success'))
              <div class="alert alert-success alert-dismissible fade show rounded-4 mb-4" role="alert">
                  {{ session('success') }}
@@ -15,6 +17,7 @@
              </div>
          @endif
 
+         {{-- Errores de validación del formulario --}}
          @if($errors->any())
              <div class="alert alert-danger alert-dismissible fade show rounded-4 mb-4" role="alert">
                  <ul class="mb-0">
@@ -26,6 +29,7 @@
              </div>
          @endif
 
+         {{-- Formulario POST que crea una nueva consulta con estado 'pendiente' --}}
          <form action="{{ url('/consultas') }}" method="POST">
             @csrf
             <div class="mb-3">

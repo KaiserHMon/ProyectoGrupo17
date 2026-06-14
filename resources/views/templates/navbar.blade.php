@@ -1,3 +1,4 @@
+{{-- Navbar principal: logo, links de navegación pública e íconos de sesión según rol del usuario --}}
 <div class="navbar-wrapper">
   <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container-fluid">
@@ -11,18 +12,22 @@
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <div class="navbar-nav ms-auto nav-links align-items-center">
+          {{-- Links visibles para todos los visitantes --}}
           <a href="/catalogo" class="nav-link fw-bold">Catálogo</a>
           <a href="/comercializacion" class="nav-link fw-bold">Comercialización</a>
           <a href="/quienes-somos" class="nav-link fw-bold">Quiénes Somos</a>
           <a href="/consultas" class="nav-link fw-bold">Consultas</a>
 
+          {{-- Si el usuario está autenticado, mostrar íconos según su rol --}}
           @auth
+            {{-- Admin: ícono de panel de administración --}}
             @if(Auth::user()->rol->nombre === 'admin')
               <a href="/admin" class="nav-link d-flex align-items-center" title="Panel Admin" aria-label="Panel Admin">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M4 13h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zm0 8h6c.55 0 1-.45 1-1v-4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1zm10 0h6c.55 0 1-.45 1-1v-8c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1v8c0 .55.45 1 1 1zM13 4v4c0 .55.45 1 1 1h6c.55 0 1-.45 1-1V4c0-.55-.45-1-1-1h-6c-.55 0-1 .45-1 1z"/>
                 </svg>
               </a>
+            {{-- Cliente: íconos de carrito y de mi cuenta --}}
             @elseif(Auth::user()->rol->nombre === 'cliente')
               <a href="/carrito" class="nav-link d-flex align-items-center" title="Carrito de Compras" aria-label="Carrito de Compras">
                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
@@ -36,6 +41,7 @@
               </a>
             @endif
 
+            {{-- Botón de logout disponible para cualquier usuario autenticado --}}
             <form action="{{ route('usuarios.logout') }}" method="POST">
               @csrf
               <button type="submit" class="nav-link d-flex align-items-center" title="Cerrar Sesión" aria-label="Cerrar Sesión">
@@ -46,6 +52,7 @@
             </form>
           @endauth
 
+          {{-- Si no está autenticado, mostrar ícono de login --}}
           @guest
             <a href="/usuarios/login-register" class="nav-link">
               <img src="{{ asset('images/svg/login-svgrepo-com.svg') }}" alt="Iniciar Sesión" width="30" height="30">
@@ -55,6 +62,7 @@
       </div>
     </div>
   </nav>
+  {{-- SVG decorativo que forma una ola debajo del navbar --}}
   <div class="navbar-wave">
     <svg viewBox="0 0 1440 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,18 C360,36 1080,0 1440,18 L1440,0 L0,0 Z" fill="#622b16"/>

@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique();
-            $table->string('descripcion')->nullable();
+            $table->string('nombre')->unique(); // Valores posibles: 'admin', 'cliente'
+            $table->string('descripcion')->nullable(); // Descripción opcional del rol
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes(); // Borrado lógico para no romper relaciones con usuarios
         });
     }
 

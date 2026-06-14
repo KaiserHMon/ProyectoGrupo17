@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('usuario_id')
                     ->constrained('usuarios')
-                    ->cascadeOnDelete();
+                    ->cascadeOnDelete(); // Si se elimina el usuario, se eliminan sus ventas
+            // pendiente = carrito activo; confirmado = compra finalizada por el cliente
             $table->enum('estado', ['pendiente', 'confirmado'])
                     ->default('pendiente');
-            $table->decimal('total', 10, 2)->default(0);
+            $table->decimal('total', 10, 2)->default(0); // Se recalcula cada vez que el carrito cambia
             $table->timestamps();
             $table->softDeletes();
         });

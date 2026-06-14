@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->unique(true);
-            $table->text('descripcion')->nullable();
-            $table->decimal('precio', 8, 2);
-            $table->unsignedInteger('stock')->default(0);
-            $table->string('imagen')->nullable();
+            $table->string('nombre')->unique(true); // Nombre único del producto
+            $table->text('descripcion')->nullable(); // Descripción opcional que se muestra en el catálogo
+            $table->decimal('precio', 8, 2); // Precio con hasta 8 dígitos y 2 decimales
+            $table->unsignedInteger('stock')->default(0); // Cantidad disponible en inventario
+            $table->string('imagen')->nullable(); // Nombre del archivo guardado en storage/productos
             $table->timestamps();
-            $table->softDeletes();
+            $table->softDeletes(); // Borrado lógico: el producto no se elimina físicamente de la BD
         });
     }
 

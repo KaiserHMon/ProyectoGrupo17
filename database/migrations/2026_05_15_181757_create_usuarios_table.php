@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('email');
-            $table->string('password');
+            $table->string('password'); // Se guarda hasheada con bcrypt
             $table->foreignId('rol_id')
                   ->constrained('roles')
-                  ->onDelete('restrict');
-            $table->rememberToken();
+                  ->onDelete('restrict'); // No se puede eliminar un rol si tiene usuarios asignados
+            $table->rememberToken(); // Token para la opción "recordarme" del login de Laravel
             $table->timestamps();
             $table->softDeletes();
         });

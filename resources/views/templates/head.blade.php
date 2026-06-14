@@ -1,3 +1,4 @@
+{{-- Bloque <head>: metadatos, favicon y hojas de estilo (Bootstrap, Bootstrap Icons, estilos propios) --}}
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">

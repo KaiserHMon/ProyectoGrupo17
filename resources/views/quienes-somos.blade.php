@@ -1,13 +1,16 @@
+{{-- Página "Quiénes Somos": historia del emprendimiento y presentación del equipo detrás de Maie --}}
 @extends('layout')
 
 @section('contenido')
 
+{{-- Sección hero: título y bajada introductoria --}}
 <section class="section-about py-5">
 <div class="container">
     <h1 class="fs-2 fs-md-1 fw-bold lh-1 mb-4 text-center">El detrás de escena de Maie Alfajores</h1>
     <p class="text-center lead">Somos un emprendimiento familiar que se dedica a crear dulces artesanales con ingredientes naturales de alta calidad</p>
 </div>
 
+{{-- Carousel de fotos de los productos --}}
 <div class="container">
 <div id="carouselExampleFade" class="carousel slide carousel-fade shadow-lg rounded">
   <div class="carousel-inner">
@@ -33,6 +36,7 @@
 </div>
 </section>
 
+{{-- Sección: historia de cómo surgió Maie --}}
 <section class="py-5 bg-light-maie">
   <div class="container">
     <div class="row align-items-center g-4">
@@ -48,6 +52,7 @@
   </div>
 </section>
 
+{{-- Sección: equipo detrás de Maie. Carousel con foto, nombre y rol de cada integrante --}}
 <section class="py-5 bg-light-beige">
   <div class="container text-center">
     <h2 class="mb-5 fw-bold">Quienes estan detras de Maie</h2>

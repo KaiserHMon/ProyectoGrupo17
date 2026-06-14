@@ -1,9 +1,11 @@
+{{-- Vista del carrito del cliente: lista los items del pedido en curso con controles de cantidad y botones para finalizar o cancelar la compra --}}
 @extends('layout')
 
 @section('contenido')
 <div class="container py-5">
     <h1 class="display-5 fw-bold mb-4 text-center">Mi <span class="fst-italic fw-bold text-maie">Carrito</span></h1>
 
+    {{-- Alertas de resultado de operaciones previas (agregar, actualizar, eliminar item) --}}
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}
@@ -18,12 +20,14 @@
         </div>
     @endif
 
+    {{-- Si no hay venta cabecera activa o no tiene items, mostrar carrito vacío --}}
     @if(!$cabecera || $cabecera->detalles->isEmpty())
         <div class="text-center py-5">
             <p class="lead mb-4">Tu carrito está vacío.</p>
             <a href="{{ url('/catalogo') }}" class="btn btn-custom px-4 py-2 rounded-pill">Ir al Catálogo</a>
         </div>
     @else
+        {{-- Tabla de items del carrito --}}
         <div class="table-responsive shadow-sm rounded-4 mb-4">
             <table class="table table-hover align-middle mb-0">
                 <thead class="bg-light">
@@ -40,9 +44,10 @@
                     <tr>
                         <td>
                             <div class="d-flex align-items-center">
+                                {{-- Imagen del producto: usa la de storage si existe, sino cae al placeholder --}}
                                 @php
-                                    $imagenPath = $detalle->producto->imagen 
-                                        ? 'storage/productos/' . $detalle->producto->imagen 
+                                    $imagenPath = $detalle->producto->imagen
+                                        ? 'storage/productos/' . $detalle->producto->imagen
                                         : 'images/productos/maie-1.jpg';
                                 @endphp
                                 <img src="{{ asset($imagenPath) }}" alt="{{ $detalle->producto->nombre }}" class="rounded-3 me-3" style="width: 60px; height: 60px; object-fit: cover;">
@@ -53,6 +58,7 @@
                         </td>
                         <td class="text-center">$ {{ number_format($detalle->precio_unitario, 2, ',', '.') }}</td>
                         <td class="text-center">
+                            {{-- Controles de cantidad: envía PATCH con action 'increase' o 'decrease'. El botón - se deshabilita en cantidad 1, el + se deshabilita si alcanza el stock --}}
                             <form action="{{ route('carrito.update', $detalle->id) }}" method="POST" class="d-inline-block">
                                 @csrf
                                 @method('PATCH')
@@ -69,6 +75,7 @@
                         </td>
                         <td class="text-center fw-bold">$ {{ number_format($detalle->cantidad * $detalle->precio_unitario, 2, ',', '.') }}</td>
                         <td class="text-center">
+                            {{-- Eliminar item individual del carrito --}}
                             <form action="{{ route('carrito.destroy', $detalle->id) }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar este producto del carrito?')">
                                 @csrf
                                 @method('DELETE')
@@ -80,6 +87,7 @@
                     </tr>
                     @endforeach
                 </tbody>
+                {{-- Fila de total general del pedido --}}
                 <tfoot class="bg-light fw-bold">
                     <tr>
                         <td colspan="4" class="text-end py-3 fs-5">Total:</td>
@@ -89,6 +97,7 @@
             </table>
         </div>
 
+        {{-- Acciones globales: cancelar compra (vacía el carrito) o finalizar (confirma la venta) --}}
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
             <div>
                 <a href="{{ url('/catalogo') }}" class="btn btn-outline-secondary px-4 py-2 rounded-pill me-2">Seguir Comprando</a>
