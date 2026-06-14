@@ -75,8 +75,14 @@ php artisan migrate
 php artisan storage:link
 ```
 
-**PARA PROBAR LOS 2 TIPOS DE USUARIOS**
+**PARA PROBAR LOS 2 TIPOS DE USUARIOS - INGRESAR CON LAS SIGUIENTES CREDENCIALES**
+
+**Usuario 1 - Administrador**
+```bash
+UsuarioAdmin   admin@prueba.com   - admin12345 
+```
+
+**Usuario 2 - Cliente**
 ```bash
 UsuarioCliente cliente@prueba.com - cliente12345
-UsuarioAdmin   admin@prueba.com   - admin12345 
 ```
