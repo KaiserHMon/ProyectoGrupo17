@@ -30,6 +30,9 @@ Las pruebas de implementación básicas (ingreso al panel de administrador a tra
 
 Para las pruebas a profundidad del middleware y de la lógica de negocio, se utilizó un agente de inteligencia artificial para realizarlas.
 
+En cuanto a inconvenientes, los únicos que se nos presentaron durante el desarrollo fueron relacionados a que nos olvidábamos de ejecutar las migraciones o composer install dándonos errores ocasionales pero rápidamente se solucionaban. 
+Por ultimo durante el despliegue tuvimos errores con las imágenes que guardaba el admin en relación a los productos que creaba pero luego de modificar un .gitignore (ya que ignoraba estas imágenes) e investigar que comando de php artisan ejecutar, lo solucionamos.
+
 ## Ejecucion del proyecto
 Para clonar y ejecutar el proyecto en Laravel Herd, seguí estos pasos:
 
