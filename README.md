@@ -13,18 +13,18 @@ El proceso de desarrollo transcurrió casi sin sobresaltos. El único problema s
 ## Pruebas de implementación
 Se realizaron las siguientes pruebas:
 
-Seguridad de acceso y autenticación
-Rutas protegidas (/admin, /cliente) redirigen correctamente al login cuando no hay sesión activa.
-El formulario de registro rechaza requests sin token CSRF (HTTP 419).
-No es posible registrarse como administrador inyectando rol_id=1 en el body del formulario — el rol está hardcodeado en el controller.
-Un cliente autenticado no puede acceder a rutas de admin ni modificar roles de usuario.
-El endpoint de descarga de comprobantes verifica que la venta pertenezca al usuario que la solicita (no hay IDOR).
+Seguridad de acceso y autenticación: 
+- Rutas protegidas (/admin, /cliente) redirigen correctamente al login cuando no hay sesión activa. 
+- El formulario de registro rechaza requests sin token CSRF (HTTP 419). 
+- No es posible registrarse como administrador inyectando rol_id=1 en el body del formulario. 
+- Un cliente autenticado no puede acceder a rutas de admin ni modificar roles de usuario. 
+- El endpoint de descarga de comprobantes verifica que la venta pertenezca al usuario que la solicita.
 
-Lógica de venta y stock
-Intentar agregar al carrito un producto con ID inexistente devuelve 404.
-Intentar agregar directamente (sin pasar por la UI) un producto con stock 0 es rechazado por el controller con un mensaje de error — el botón deshabilitado en el catálogo no es la única protección.
-Al agregar un producto con stock 1, la segunda vez que se intenta agregar el mismo ítem el controller lo rechaza por stock insuficiente.
-Al confirmar una compra, el stock se descuenta correctamente en la base de datos dentro de una transacción, y hay una segunda validación de stock en ese momento para evitar condiciones de carrera.
+Lógica de venta y stock:  
+- Intentar agregar al carrito un producto con ID inexistente devuelve 404. 
+- Intentar agregar directamente (sin pasar por la UI) un producto con stock 0 es rechazado por el controller con un mensaje de error, el botón deshabilitado en el catálogo no es la única protección.
+- Al agregar un producto con stock 1, la segunda vez que se intenta agregar el mismo ítem el controller lo rechaza por stock insuficiente.
+- Al confirmar una compra, el stock se descuenta correctamente en la base de datos dentro de una transacción, y hay una segunda validación de stock en ese momento.
 
 Las pruebas de implementación básicas (ingreso al panel de administrador a través de URL sin estar logueado como administrador, comprar un producto con stock agotado) fueron realizadas en el proceso de desarrollo.
 
